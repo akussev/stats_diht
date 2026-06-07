@@ -51,7 +51,7 @@
     Функция $G(\mathbf{x}, \theta)$ называется $\textit{центральной функцией}$ (или \textit{центральной статистикой}), если
     \begin{enumerate}
         \item распределение $G(\mathbf X, \theta)$ не зависит от $\theta$ для всех $\theta \in \Theta$;
-        \item\label{monot} при каждом $\mathbf{x} \in \R^n$ функция $g(\mathbf{x},\theta)$ непрерывна и строго убывает (возрастает) по $\theta$.
+        \item\label{monot} при каждом $\mathbf{x} \in \R^n$ функция $G(\mathbf{x},\theta)$ непрерывна и строго убывает (возрастает) по $\theta$.
     \end{enumerate}
 \end{definition}
 
@@ -125,7 +125,7 @@
 
 \paragraph{\textit{Метод II. Использование оценки дисперсии}}
 
-Допустим на нас с неба свалилась асимптотически нормальная оценка $\theta^*$, то есть $\sqrt{n}(\theta^*-\theta) \stackrel{d}{\to}\mathcal{N}(0, \sigma^2(\theta))$ при $n\to\infty$. Потребуем, чтобы асимптотическая дисперсия $\sigma^2(\theta)$ была положительна и непрерывна при всех $\theta \in \Theta$. Рассмотрим
+Допустим, на нас с неба свалилась асимптотически нормальная оценка $\theta^*$, то есть $\sqrt{n}(\theta^*-\theta) \stackrel{d}{\to}\mathcal{N}(0, \sigma^2(\theta))$ при $n\to\infty$. Потребуем, чтобы асимптотическая дисперсия $\sigma^2(\theta)$ была больше нуля и непрерывна на $\Theta$. Рассмотрим
 \[
 \frac{\sqrt{n}(\theta^*_n-\theta)}{\sigma(\theta^*_n)} = \frac{\sqrt{n}(\theta^*_n-\theta)}{\sigma(\theta)} \cdot \frac{\sigma(\theta)}{\sigma(\theta^*_n)}
 \]
