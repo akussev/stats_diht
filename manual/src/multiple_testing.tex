@@ -90,7 +90,7 @@ H_j\colon \mathsf{P}_{j} \in \mathcal{P}_j \vs H_j'\colon \mathsf{P}_{j} \not\in
 \fwer = 1 - \pth[](V = 0) = 1 - \pth[]\left(\bigcap_{j \in M_0} \{\text{$j$-ая гипотеза не отвергается}\}\right) = 
 \]
 \[
-= 1 - \pth[]\left(\bigcap_{j \in M_0} \{\mathbf X^{(j)} \not\in S_j\}\right) = 1 - \prod_{j \in M_0} \left(\mathbf X^{(j)} \not\in S_j\right) \le 1 - \left[(1 - \alpha)^{1/m}\right]^m = \alpha.
+= 1 - \pth[]\left(\bigcap_{j \in M_0} \{\mathbf X^{(j)} \not\in S_j\}\right) = 1 - \prod_{j \in M_0} \pth[]\left(\mathbf X^{(j)} \not\in S_j\right) \le 1 - \left[(1 - \alpha)^{1/m}\right]^m = \alpha.
 \]
 Впрочем, при больших $m$ он ведёт себя почти так же, как и печально известный метод Бонферрони, поэтому данный способ тоже не шибко полезен.
 
@@ -178,12 +178,12 @@ p_{(1)} \le \ldots \le p_{(m)}.
 
 \textbf{Метод Бенджамини-Иекутиели} применим в общем случае, когда о зависимостях между выборками неизвестно (в таком случае метод не улучшаем). Он основан на восходящей процедуре с
 \[
-\alpha_j = \frac{\alpha i}{m} \cdot \left(\sum_{l=1}^m \frac{1}{l}\right)^{-1}.
+\alpha_j = \frac{\alpha j}{m} \cdot \left(\sum_{l=1}^m \frac{1}{l}\right)^{-1}.
 \]
 
 Для независимых выборок можно применим более мощный \textbf{метод Бенджамини-Хохберга}, для которого уже
 \[
-\alpha_j = \frac{\alpha i}{m}.
+\alpha_j = \frac{\alpha j}{m}.
 \]
 
 Можно показать, что выполняется следующее утверждение:
@@ -282,7 +282,7 @@ multiple_ttest_results(pvalues, benjamini_hochberg)
 Accepted  590    36
 Rejected   10   364
     \end{lstlisting}
-    Теперь допускаются ошибки I рода (хоть и не в таких количествах, как в топорном способе), но мощность куда лучше, чем в предыдущих двух случаев.
+    Теперь допускаются ошибки I рода (хоть и не в таких количествах, как в топорном способе), но мощность куда лучше, чем в предыдущих двух случаях.
 \end{example}
 
 

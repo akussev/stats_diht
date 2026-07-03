@@ -128,7 +128,7 @@ H_0\colon X_1 \sim \ud(0, 1) \vs H_1\colon X_1 \sim \expd(1).
 %\end{center}
 Из монотонности $\rho_1(t) = e^{-t}$ (см. рис.) легко понять, что р.н.м.к. здесь будет
 \[
-R_{\lambda} = \{x \in \R\colon \rho_1(x) \ge \lambda\rho_0(x)\} = (-\infty; c] \cup [1; +\infty],
+R_{\lambda} = \{x \in \R\colon \rho_1(x) \ge \lambda\rho_0(x)\} = (-\infty; c] \cup [1; +\infty),
 \]
 где $c$ удовлетворяет равенствам $\lambda = e^{-c}$ и $\alpha = \pth[0](\mathbf X \in R_{\lambda}) = c$, то есть $\lambda  = e^{-\alpha}$. Отсюда также несложно посчитать мощность нашего критерия:
 \[
@@ -157,7 +157,7 @@ R_{\lambda} = \left\{\mathbf{x}\in\R^n\colon \frac{\rho_1(\mathbf{x})}{\rho_0(\m
 \[
 \lambda = \left(\frac{\sigma^2_0}{\sigma^2_1}\right)^{n/2}\cdot \exp{\left[-\frac{1}{2}\left(\frac{\sigma^2_0}{\sigma^2_1}-1\right)\chi^2_{n,\alpha}\right]}.
 \]
-В случае $\sigma^2_0 < \sigma^2_1$ формула останется прежней за исключением замены $z_{\alpha}$ на $z_{1-\alpha}$ (подумайте, почему).
+В случае $\sigma^2_0 < \sigma^2_1$ формула останется прежней за исключением замены $\chi^2_{n,\alpha}$ на $\chi^2_{n,1-\alpha}$ (подумайте, почему).
 \end{example}
 
 \subsection{Сложные гипотезы и монотонное отношение правдоподобия}
@@ -199,7 +199,7 @@ $$R = \left\{\mathbf{x}\colon \left.\left(\sum x_i - n\theta_0\right)\right/\sqr
     \[
     \frac{\rho_{\mu_2}(\mathbf{x})}{\rho_{\mu_1}(\mathbf{x})} = \exp{\left[\frac{1}{2}\sum (x_i + \mu_1)^2-\frac{1}{2}\sum (x_i + \mu_2)^2\right]} = \exp{\left[\frac{n}{2}(\mu_1^2 - \mu_2^2) + (\mu_1-\mu_2)\sum x_i\right]},
     \]
-    что является возрастающей по $-\sum x_i$ функцией. Опять же, имеем $\sum X_i \sim \mathcal{N}(n\theta_0, n)$ при верности $H_0$, откуда получаем р.м.н.к.
+    что является возрастающей по $-\sum x_i$ функцией. Опять же, имеем $\sum X_i \sim \mathcal{N}(n\theta_0, n)$ при верности $H_0$, откуда получаем р.н.м.к.
     $$R = \left\{\mathbf{x}\colon \left.-\left(\sum x_i - n\theta_0\right) \right/ \sqrt{n} \ge z_{1 - \alpha}\right\} = \left\{\mathbf{x}\colon \sum x_i \le n\theta_0 + \sqrt{n}z_{\alpha}\right\}.$$
 \end{itemize}
 \end{example}
@@ -214,7 +214,7 @@ $$R = \left\{\mathbf{x}\colon \left.\left(\sum x_i - n\theta_0\right)\right/\sqr
     \left(\frac{\lambda_2}{\lambda_1}\right)^n \exp{\left[(\lambda_1 - \lambda_2)\sum x_i\right]},
     \]
     поэтому семейство распределений обладает неубывающим отношением правдоподобия по $-\sum x_i$. Из независимости $X_i$ получаем, что если $H_0$ верна, то $\sum X_i \sim \Gamma(n, \lambda_0)$. Тогда по теореме выше р.н.м.к. будет критерий
-    $$R = \left\{\mathbf{x}\colon -\sum x_i \ge -x_{\alpha}\right\} = \left\{\mathbf{x}\colon \sum x_i \le y_{\alpha}\right\},$$
+    $$R = \left\{\mathbf{x}\colon -\sum x_i \ge -y_{\alpha}\right\} = \left\{\mathbf{x}\colon \sum x_i \le y_{\alpha}\right\},$$
     где $y_{p}$ --- $p$-квантиль распределения $\Gamma(n, \lambda_0)$.
 
     \item $H_1\colon \lambda < \lambda_0$. Сведём задачу к теореме выше введением иного параметра $\nu := -\lambda$. Тогда $\rho_{\nu}(t)=-\nu e^{\nu t}$, и гипотезы перепишутся как
