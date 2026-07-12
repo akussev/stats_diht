@@ -311,7 +311,7 @@
     \]
     где $\Sigma$ --- некоторая ковариационная матрица. Применяя теорему о наследовании асимптотической нормальности для $\tau(x, y) = y - x^2$:
     \[
-    \sqrt{n}\left(s^2 - \sigma^2\right) = \sqrt{n}\left(\tau(\overline{\mathbf X}, \overline{\mathbf X^2}) - \tau(\me X_1, \me X_1^2)\right) \stackrel{d_{\theta}}{\longrightarrow} \mathcal{N}(0, \nabla \tau \Sigma\nabla \tau^T),
+    \sqrt{n}\left(s^2 - \sigma^2\right) = \sqrt{n}\left(\tau(\overline{\mathbf X}, \overline{\mathbf X^2}) - \tau(\me X_1, \me X_1^2)\right) \stackrel{d_{\theta}}{\longrightarrow} \mathcal{N}(0, \nabla \tau \cdot \Sigma \cdot \nabla \tau^T),
     \]
     что и требовалось.
 \end{example}
@@ -380,7 +380,7 @@
     -
     \tau(a)
     \right)
-    \stackrel{d}{\longrightarrow} \mathcal{N}(0, \sigma^2), \;\;\text{где}\;\;\sigma^2 = \nabla\tau^T \cdot \Sigma \cdot \nabla\tau = \\
+    \stackrel{d}{\longrightarrow} \mathcal{N}(0, \sigma^2), \;\;\text{где}\;\;\sigma^2 = \nabla\tau \cdot \Sigma \cdot \nabla\tau^T = \\
     = \begin{pmatrix}
         -3 & 0 & 1
     \end{pmatrix} \cdot 

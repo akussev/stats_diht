@@ -82,7 +82,7 @@ F\colon (x_1, \ldots, x_k) \mapsto \pth[]((-\infty; x_1] \times \ldots \times (-
 \begin{equation}\label{density_recalc_discr}
 	\me[] g(\xi) = \sum_{\mathbf{x} \in \Z^k} g(\mathbf{x}) \cdot \pth[](\xi = \mathbf{x}) = \int_{\R^k} g(\mathbf{x}) \cdot \rho(\mathbf{x})\,\mu(d\mathbf{x}),
 \end{equation}
-где $\rho(\mathbf{x}) = \pth[](\xi = \mathbf{x})$ --- \textit{плотность по мере $\mu$}. Отныне под словами <<плотность по мере $\mu$>> мы будем подразумевать либо обычную плотность, которая у нас была ранее, по классической мере Лебега, либо дискретную по считающей мере. Семейства распределений, у которых есть плотность по одной и той же мере, мы будем называть \textit{доминируемым}.
+где $\rho(\mathbf{x}) = \pth[](\xi = \mathbf{x})$ --- \textit{плотность по мере $\mu$}. Отныне под словами <<плотность по мере $\mu$>> мы будем подразумевать либо обычную плотность, которая у нас была ранее, по классической мере Лебега, либо дискретную по считающей мере. Семейство распределений, у которых есть плотность по одной и той же мере, мы будем называть \textit{доминируемым}.
 
 \begin{example}
 	В примере выше семейство равномерных распределений на отрезке $\{\ud(a, b)\colon a < b\}$ доминируется классической мерой Лебега на прямой с плотностью $\rho_{\ud(a, b)}(x) = \frac{1}{b-a} \cdot I\{x \in (a, b)\}$ --- её постоянство на носителе $(a, b)$ служит ещё одним аргументом в пользу такого названия. 
@@ -119,7 +119,7 @@ F\colon (x_1, \ldots, x_k) \mapsto \pth[]((-\infty; x_1] \times \ldots \times (-
 Для начала вспомним, а что вообще значит <<случайный вектор $\boldxi_n$ близок к вектору $\boldxi$>>. Есть как минимум три способа понимать эту фразу:
 
 \begin{itemize}
-    \item сходимость почти наверное ($\boldxi_n \stackrel{\text{п.н.}}{\to} \boldxi$), когда $\mathsf{P}(\{\omega\colon \boldxi_n(\omega) \stackrel{\text{п.н.}}{\to} \boldxi(\omega)\}) = 1$;
+    \item сходимость почти наверное ($\boldxi_n \stackrel{\text{п.н.}}{\to} \boldxi$), когда $\mathsf{P}(\{\omega\colon \boldxi_n(\omega) \to \boldxi(\omega)\}) = 1$;
     \item сходимость по вероятности ($\boldxi_n \stackrel{\pth[]}{\to} \boldxi$), когда для любого $\epsilon > 0$ выполнено $\mathsf{P}(\|\boldxi_n - \boldxi\| > \epsilon) \to 0$;
     \item слабая сходимость или сходимость по распределению ($\boldxi_n \stackrel{d}{\to} \boldxi$), когда $F_{\boldxi_n}(\mathbf{x}) \to F_{\boldxi}(\mathbf{x})$ для всякой точки $\mathbf{x}$, в которой $F_{\boldxi}$ непрерывна.
 \end{itemize}
@@ -214,6 +214,6 @@ $$
 \end{problem}
 
 \begin{problem}
-	Выведете многомерную ЦПТ из её одномерного случая.
+	Выведите многомерную ЦПТ из её одномерного случая.
 \end{problem}
 

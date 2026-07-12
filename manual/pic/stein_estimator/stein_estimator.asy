@@ -83,6 +83,6 @@ add(shift(0, 0) * pic_ordinary.fit(proj));
 add(shift(400, 0) * pic_js.fit(proj));
 
 // Надписи (поставили ровно по центру над каждой половиной, 200 и 600 пикселей:)
-label(scale(3) * "$\mathbf{X}$", (150, 360), red);
-label(scale(3) * "$\widehat{\boldsymbol{\theta}}$", (600, 360), heavygreen);
+label(scale(3) * "$\widehat{\boldsymbol{\theta}}$", (100, 360), red);
+label(scale(3) * "$\widetilde{\boldsymbol{\theta}}$", (600, 360), heavygreen);
 
