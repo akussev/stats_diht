@@ -229,7 +229,7 @@
 
     В частности, для $m = k = 1$ сходимость справа имеет вид
     \[
-    \omega_n\cdot\left(\tau\bigl(\xi_n\bigr) - \tau(a)\right) \stackrel{d}{\to} \tau(a) \cdot \xi.
+    \omega_n\cdot\left(\tau\bigl(\xi_n\bigr) - \tau(a)\right) \stackrel{d}{\to} \tau'(a) \cdot \xi.
     \]
 \end{theorem}
 
@@ -239,7 +239,7 @@
     	\tau\bigl(\boldxi_n\bigr) = \tau(\mathbf{a}) + d_{\mathbf{a}}\tau(\boldxi_n - \mathbf{a}) + o(\|\boldxi_n - \mathbf{a}\|),\\
         \omega_n\cdot\left(\tau\bigl(\boldxi_n\bigr) - \tau(\mathbf{a})\right) = d_{\mathbf{a}}\tau\left(\omega_n(\boldxi_n - \mathbf{a})\right) + \boldalpha(\boldxi_n - \mathbf{a}) \left\|\omega_n(\boldxi_n - \mathbf{a})\right\|,
     \end{gather*}
-    где $\|\boldalpha(\mathbf h)\| \to 0$ при $\|\mathbf h\| \to 0$, поэтому можно считать, что $\boldalpha(\mathbf h)$ непрерывна в нуле. Применение леммы Слуцкого для сходимости \eqref{delta_method_premise} и $1/\omega_n \to 0$ приводит нас к тому, что $\boldxi_n - \mathbf{a} \stackrel{d}{\to} \mathbf{0}$, тогда по теореме о наследовании сходимости $\boldalpha(\boldxi_n - \mathbf{a}) \stackrel{d}{\to} \mathbf{0}$. Дважды применяя лемму Слуцкого, получаем сначала $\boldalpha(\boldxi_n - \mathbf{a}) \left\|\omega_n(\boldxi_n - \mathbf{a})\right\| \stackrel{d}{\to} \mathbf{0}$, а потом $d_{\mathbf{a}}\tau\left(\omega_n(\boldxi_n - \mathbf{a})\right) + \boldalpha(\boldxi_n - \mathbf{a}) \left\|\omega_n(\boldxi_n - \mathbf{a})\right\| \stackrel{d}{\to} d_{\mathbf a}F(\boldxi)$, что приводит нас к требуемой сходимости.
+    где $\|\boldalpha(\mathbf h)\| \to 0$ при $\|\mathbf h\| \to 0$, поэтому можно считать, что $\boldalpha(\mathbf h)$ непрерывна в нуле. Применение леммы Слуцкого для сходимости \eqref{delta_method_premise} и $1/\omega_n \to 0$ приводит нас к тому, что $\boldxi_n - \mathbf{a} \stackrel{d}{\to} \mathbf{0}$, тогда по теореме о наследовании сходимости $\boldalpha(\boldxi_n - \mathbf{a}) \stackrel{d}{\to} \mathbf{0}$. Дважды применяя лемму Слуцкого, получаем сначала $\boldalpha(\boldxi_n - \mathbf{a}) \left\|\omega_n(\boldxi_n - \mathbf{a})\right\| \stackrel{d}{\to} \mathbf{0}$, а потом $d_{\mathbf{a}}\tau\left(\omega_n(\boldxi_n - \mathbf{a})\right) + \boldalpha(\boldxi_n - \mathbf{a}) \left\|\omega_n(\boldxi_n - \mathbf{a})\right\| \stackrel{d}{\to} d_{\mathbf a}\tau(\boldxi)$, что приводит нас к требуемой сходимости.
 \end{proof}
 
 Наиболее частым примером применения дельта-метода является перенос асимптотической нормальности с оценки на функцию от неё.
@@ -272,7 +272,7 @@
 \includegraphics[width=0.45\textwidth]{pic/delta_method/delta_method}
 \end{wrapfigure}
 
-На примере следствия разберём, как можно понимать дельта-метод. Асиптотическая нормальность $\widehat{\boldtheta}$ говорит нам, что распределение оценки <<примерно>> нормальное и сосредоточено в малой окрестности точки $\boldtheta$, коли нам приходится умножать разность $\widehat{\boldtheta} - \boldtheta$ на нечто растущее для получения нетривиального предела. Но накладываемое преобразование в малой окрестности точки <<почти что>> линейное с матрицей $d_{\boldtheta}\tau$. А нормальные векторы очень дружат с линейными преобразованиями, отчего в результате получается вновь что-то нормальное, разве что слегка растянутое или сжатое. И не может не радовать, что все эти махания руками в кавычках формализуются с помощью леммы Слуцкого.
+На примере следствия разберём, как можно понимать дельта-метод. Асимптотическая нормальность $\widehat{\boldtheta}$ говорит нам, что распределение оценки <<примерно>> нормальное и сосредоточено в малой окрестности точки $\boldtheta$, коли нам приходится умножать разность $\widehat{\boldtheta} - \boldtheta$ на нечто растущее для получения нетривиального предела. Но накладываемое преобразование в малой окрестности точки <<почти что>> линейное с матрицей $d_{\boldtheta}\tau$. А нормальные векторы очень дружат с линейными преобразованиями, отчего в результате получается вновь что-то нормальное, разве что слегка растянутое или сжатое. И не может не радовать, что все эти махания руками в кавычках формализуются с помощью леммы Слуцкого.
 
 \begin{example}\label{delta_method_for_exp}
     Пусть $\mathbf X = (X_1, \ldots, X_n)$ --- выборка из экспоненциального распределения с параметром $\theta$, т.е. $\rho_{\theta}(t) = \theta e^{-\theta t}I(t > 0)$. Рассмотрим статистику $\left(k! / \overline{\mathbf X^k}\right)^{1/k}$, где $k$ --- некоторое фиксированное натуральное число, и докажем, что она является асимптотически нормальной оценкой $\theta$.

@@ -229,7 +229,7 @@
 \end{example}
 
 \begin{example}
-    Пусть $X_1, X_2, X_3$ --- н.о.р.с.в. из распределения $\expd(\lambda)$. Докажем, что $$X_1 + X_2 + X_3 \ind \frac{X_1}{X_1+X_2+X_3}.$$ Полнота и достаточность $X_1 + X_2 + X_3$ проверяется аналогично. Так как $X_i \sim Exp(\lambda)$, то $X_i = \xi_i / \lambda$, где $\xi_i \sim Exp(1)$. Значит, для любого $c\in\R$
+    Пусть $X_1, X_2, X_3$ --- н.о.р.с.в. из распределения $\expd(\lambda)$. Докажем, что $$X_1 + X_2 + X_3 \ind \frac{X_1}{X_1+X_2+X_3}.$$ Полнота и достаточность $X_1 + X_2 + X_3$ проверяется аналогично. Так как $X_i \sim \expd(\lambda)$, то $X_i = \xi_i / \lambda$, где $\xi_i \sim \expd(1)$. Значит, для любого $c\in\R$
     \begin{gather*}
     \mathsf P_{\lambda}\left(\frac{X_1}{X_1+X_2+X_3} \le c\right) = \mathsf P_{\lambda}\left(\frac{\xi_1}{\xi_1+\xi_2+\xi_3} \le c\right) = \\
     = \mathsf P_{\lambda}\left(\xi_1 \le c(\xi_1+\xi_2+\xi_3)\right) = F_{(1-c)\xi_1-c\xi_2-c\xi_3}(0),
