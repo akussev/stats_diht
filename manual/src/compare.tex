@@ -63,7 +63,7 @@
         \sqrt{n}(\overline{\mathbf X} - \theta) \sim \mathcal{N}(0, 1).
         \]
         Вторая же есть выборочная медиана $\widehat{\mu}(\mathbf X)$, которая по теореме о выборочном квантиле является асимптотически нормальной с асимптотической дисперсией $1/4\rho_{\theta}(\theta)^2 = \pi/2$. Таким образом, $\overline{\mathbf X}$ лучше $\widehat{\mu}$ в асимптотическом подходе.
-        \item Иная ситуация обстоит с $X_1, \ldots, X_n \sim \laplaced(\theta, 1)$. Хвосты этого распределения заметно тяжелее, чем у нормального закона, поэтому обычное среднее здесь менее эффективно. По ЦПТ асимптотическая дисперсия $\overline{\mathbf X}$ равна $\va X_1 = 2$, при этом в то же время по теореме о выборочном квантиле та же величина для $\widehat{\mu}$ равна $1/4\rho'_{\theta}(0)^2 = 1$.
+        \item Иная ситуация обстоит с $X_1, \ldots, X_n \sim \laplaced(\theta, 1)$. Хвосты этого распределения заметно тяжелее, чем у нормального закона, поэтому обычное среднее здесь менее эффективно. По ЦПТ асимптотическая дисперсия $\overline{\mathbf X}$ равна $\va X_1 = 2$, при этом в то же время по теореме о выборочном квантиле та же величина для $\widehat{\mu}$ равна $1/4\rho_{\theta}(0)^2 = 1$.
         \item А вот оценки, полученные в примере \ref{quantile_example}, сравнить в данном подходе не получится: для некоторых значений параметра одна оценка имеет меньшую асимптотическую дисперсию, а при других --- вторая.
     \end{itemize}
 \end{example}
@@ -110,8 +110,8 @@
 
 Третье условие может ввести в ужас, хотя на самом деле мы всего лишь хотим дифференцировать по параметру $\theta$:
 \begin{gather*}
-\frac{\partial}{\partial\theta} \me S(\mathbf X) = \frac{\partial}{\partial\theta} \int S(\mathbf x) \rho_{\theta}(\mathbf x)\,d\mathbf{x} = \int \frac{\partial}{\partial\theta}\left(S(\mathbf x) \rho_{\theta}(\mathbf x)\right)\,d\mathbf{x} = \int S(\mathbf x) \rho'_{\theta}(\mathbf x)\,d\mathbf{x} = \\
-= \int S(\mathbf x) \frac{\rho'_{\theta}(\mathbf x)}{\rho_{\theta}(\mathbf x)} \rho_{\theta}(\mathbf x)\,d\mathbf{x} = \int \left(S(\mathbf x) \frac{\partial}{\partial \theta}\ln{\rho_{\theta}(\mathbf x)}\right) \rho_{\theta}(\mathbf x)\,d\mathbf{x} = \me \left(S(\mathbf X)\frac{\partial}{\partial\theta}\ln{\rho_{\theta}(\mathbf X)}\right).
+\frac{\partial}{\partial\theta} \me S(\mathbf X) = \frac{\partial}{\partial\theta} \int S(\mathbf x) \rho_{\theta}(\mathbf x)\,\mu(d\mathbf{x}) = \int \frac{\partial}{\partial\theta}\left(S(\mathbf x) \rho_{\theta}(\mathbf x)\right)\,\mu(d\mathbf{x}) = \int S(\mathbf x) \rho'_{\theta}(\mathbf x)\,\mu(d\mathbf{x}) = \\
+= \int S(\mathbf x) \frac{\rho'_{\theta}(\mathbf x)}{\rho_{\theta}(\mathbf x)} \rho_{\theta}(\mathbf x)\,\mu(d\mathbf{x}) = \int \left(S(\mathbf x) \frac{\partial}{\partial \theta}\ln{\rho_{\theta}(\mathbf x)}\right) \rho_{\theta}(\mathbf x)\,\mu(d\mathbf{x}) = \me \left(S(\mathbf X)\frac{\partial}{\partial\theta}\ln{\rho_{\theta}(\mathbf X)}\right).
 \end{gather*}
 
 Но если остальные условия проверяются относительно легко, выполнение условия \ref{diff_by_theta} установить <<в лоб>> довольно проблематично. Удобным представляется следующее достаточное условие, которое выполнено для широкого класса моделей.
@@ -517,11 +517,27 @@ KL(\rho_{\boldtheta} || \rho_{\boldtheta + \Delta}) = \frac{1}{2} \Delta^T I_{\m
 \subsection*{Задачи}
 
 \begin{problem}
+	Для выборки $\mathbf X = (X_1, \ldots, X_n)$ из распределения $\expd(1/\theta)$ сравните оценки $\widehat{\theta}(\mathbf X) = \overline{\mathbf X}$ и $\widetilde{\theta}(\mathbf X) = nX_{(1)}$ в среднеквадратичном подходе.
+\end{problem}
+
+\begin{problem}
+	\textbf{(а)} Покажите, что информация Фишера может быть найдена как ковариационная матрица градиента логправдоподобия:
+	\[
+	I_{\mathbf X}(\boldtheta) = \mathsf{D}_{\theta} \nabla_{\boldtheta} \ln{\rho_{\boldtheta}(\mathbf{X})};
+	\]
+	\textbf{(б)} Покажите, что $I_{\mathbf X}(\boldtheta) = nI_{X_1}(\boldtheta)$.
+\end{problem}
+
+\begin{problem}
 	В модели сдвига-масштаба стандартного распределения Коши,
 	\[
 	\{\cauchyd(a, \sigma)\colon a \in \R, \sigma \in \R_+\},
 	\]
 	найдите информационную матрицу Фишера.
+\end{problem}
+
+\begin{problem}
+	Для выборки $\mathbf X = (X_1, \ldots, X_n)$ из $\mathcal{N}(0, \sigma^2)$ посчитайте $I_{S(\mathbf X)}(\sigma^2)$ для статистик $S_1(\mathbf X) = \mathbf X$, $S_2(\mathbf X) = \overline{\mathbf X}$, $S_3(\mathbf X) = \overline{\mathbf X^2}$. Какая из двух последних статистик лучше подходит для оценивания неизвестного параметра $\sigma^2$?
 \end{problem}
 
 \begin{problem}\label{fisher-inf-is-second-derivative}

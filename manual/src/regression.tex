@@ -79,7 +79,7 @@ Z^T(\mathbf X - \pr_{\mathcal{L}} \mathbf X) = 0 \Longrightarrow Z^T \mathbf X =
 Таким образом, полученная оценка $\widehat{\boldtheta}$ является несмещённой оценкой вектора $\boldtheta$. При выполнении допущений выше можно сказать, что такая оценка будет наилучшей в некотором хорошем классе оценок.
 
 \begin{theorem}{Гаусс, Марков}{}
-    В линейной регрессионной модели при выполнении условий \ref{zero_me}-\ref{lin_ind} оценка $\widehat{\boldtheta}$ является эффективной в классе несмещённых линейных оценок $\boldtheta$.
+    В линейной регрессионной модели при выполнении условий \ref{zero_me}-\ref{lin_ind} оценка $\widehat{\boldtheta}$ является лучшей в среднеквадратичном подходе в классе несмещённых линейных оценок $\boldtheta$.
 \end{theorem}
 
 \begin{proof}
@@ -91,7 +91,7 @@ Z^T(\mathbf X - \pr_{\mathcal{L}} \mathbf X) = 0 \Longrightarrow Z^T \mathbf X =
     \[
     \va[\boldtheta, \sigma^2] \boldtheta^* = \va[\boldtheta, \sigma^2](C\mathbf X) = C\cdot (\va[\boldtheta, \sigma^2] \boldepsilon)\cdot C^T = \sigma^2 CC^T.
     \]
-    Таким образом, по определению эффективной многомерной оценки нам надо показать, что матрица $CC^T - (Z^TZ)^{-1}$ положительно полуопределена. Для этого домножим $(Z^TZ)^{-1}$ слева и справа на единичную матрицу $E_k = CZ$ и вынесем общие множители за скобку:
+    Таким образом, по определению наилучшей многомерной оценки нам надо показать, что матрица $CC^T - (Z^TZ)^{-1}$ положительно полуопределена. Для этого домножим $(Z^TZ)^{-1}$ слева и справа на единичную матрицу $E_k = CZ$ и вынесем общие множители за скобку:
     \[
     CC^T - (Z^TZ)^{-1} = CC^T - CZ(Z^TZ)^{-1}(CZ)^T = C\left(E_n - Z(Z^TZ)^{-1}Z^T\right)C^T.
     \]
@@ -565,11 +565,31 @@ R = \left\{\frac{(T\widehat{\boldtheta} - \tau)^T B^{-1} (T\widehat{\boldtheta} 
 \end{problem}
 
 \begin{problem}
+	Пусть $X_1, \ldots, X_n$ --- независимые случайные величины, представимые в виде
+\[
+X_i = a + bw_i + \varepsilon_i, \;\;\;\;\; \varepsilon_i \sim \mathcal{N}(0, \sigma^2)
+\]
+где $w_i$ --- фиксированные константы. Постройте МНК-оценки для параметров $a$ и $b$.
+\end{problem}
+
+\begin{problem}
     Пусть помимо $k$ вещественных признаков имеется категориальный признак, принимающий $d$ различных значений. Для $j$-ого из них рассматривается своя линейная зависимость с $n_j$ объектами:
     \[
     \mathbf X^{(j)} = Z^{(j)} \boldtheta + \boldepsilon^{(j)},
     \]
     где $\mathbf X^{(j)} \in \R^{n_j}$, $Z^{(j)} \in \R^{n_j \times k}$. Сведите задачу к одной линейной регрессии и покажите, что оценка МНК не поменяется. Чем это отличается от тупого добавления $d-1$ onehot признаков?
+\end{problem}
+
+\begin{problem}
+	{\bf Недоопределение}. В модели линейной регрессии $\mathbf{X} = Z\boldtheta + \boldepsilon$, где $\mathbf{X} \in \R^n$, $Z\in \R^{n \times k}$, $\theta_i \ne 0$, МНК-оценка $\widehat{\theta}$ вектора $(\theta_1, \ldots, \theta_m)^T$ строится только по первым $m < k$ столбцам матрицы $Z$ (статистик думает, что целевая величина зависит лишь от первых $m$ признаков, когда на самом деле от всех $k$). Докажите, что полученная оценка может оказаться смещённой.
+\end{problem}
+
+\begin{problem}
+	{\bf Переопределение}. В модели линейной регрессии $\mathbf{X} = Z\boldtheta + \boldepsilon$, где $\mathbf{X} \in \R^n$, $Z\in \R^{n \times k}$, МНК-оценка $\widehat{\theta}$ вектора $(\theta_1, \ldots, \theta_m)^T$ строится сразу по $m > k$ признакам с матрицей
+$$
+Z' = (\mathbf{z}_{1}, \ldots, \mathbf{z}_{k}, \mathbf{z}_{k+1}, \ldots, \mathbf{z}_{m}) = (Z, \ldots)
+$$
+(статистик думает, что целевая величина зависит от всех $m$ признаков, когда на самом деле только от первых $k$, то есть $\theta_{k+1} = \ldots = \theta_m = 0$). Докажите, что для всех $i = 1, \ldots, k$ выполнено неравенство $\va[\boldtheta] \widehat\theta_i \ge \va[\boldtheta] \widetilde\theta_i$, где $\widetilde\boldtheta$ --- МНК-оценка, построенная по матрице $Z$ (иными словами, добавление бесполезных признаков увеличило дисперсию оценок действительно нужных параметров).
 \end{problem}
 
 \begin{problem}\label{full_suff_stat_for_linreg}
@@ -590,4 +610,9 @@ R = \left\{\frac{(T\widehat{\boldtheta} - \tau)^T B^{-1} (T\widehat{\boldtheta} 
 	Пусть имеется $k$ выборок $\mathbf{X}_{1}, \ldots, \mathbf{X}_k$, причём $i$-ая из них $\mathbf{X}_{i} = (X_{i1}, \ldots, X_{i n_i})$ состоит из $n_i$ наблюдений, которые распределены как $\mathcal{N}(\mu_i, \sigma^2)$ (дисперсии, как и ранее, считаются равными, хоть и неизвестными). Сведя задачу к линейной регрессии, предложите критерий для проверки гипотезы $H_0\colon \mu_1 = \mu_2 = \ldots = \mu_k$ против общей альтернативы.
 \end{problem}
 
-
+\begin{problem}
+	В модели линейной регрессии $X_i = \theta_0 + \mathbf{z}_i \boldtheta + \epsilon$, где $\epsilon \sim \mathcal{N}(0, \sigma^2)$, а $\theta_0, \boldtheta \in \R^k, \sigma^2$~--- неизвестные параметры. Постройте точный критерий для проверки адекватности модели $H_0\colon \boldtheta = \mathbf{0}$ вида $\{R^2 > c_{\alpha}\}$, где $R^2$ --- \textit{коэффициент детерминации}:
+\[
+R^2 = 1 - \frac{\sum_{i=1}^n (X_i - \widehat\theta_0 - \mathbf{z}_i\widehat\boldtheta)^2}{\sum_{i=1}^n (X_i - \overline{X})^2}.
+\]
+\end{problem}

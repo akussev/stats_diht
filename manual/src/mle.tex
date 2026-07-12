@@ -273,7 +273,7 @@ I_{\mathbf X}(\boldtheta)_{ij} = - \me[\boldtheta] \frac{\partial^2 \ln \rho_{\b
 
 Как известно из курса матанализа, гессиан показывает характер выпуклости функции. С учётом того, что математическое ожидание приближается выборочным средним, за знак которого можно вынести знак производной:
 \[
--i(\boldtheta)_{ij} = \me[\boldtheta] \frac{\partial^2 \ln \rho_{\boldtheta}(X_1)}{\partial \theta_i \partial \theta_j} \stackrel{\boldtheta\text{-п.н.}}{\longleftarrow} \frac{1}{n}\sum_{i=1}^n \frac{\partial^2 \ln \rho_{\boldtheta}(X_i)}{\partial \theta_i \partial \theta_j} = \frac{\partial^2}{\partial \theta_i \partial \theta_j}\sum_{i=1}^n \frac{\ln \rho_{\boldtheta}(X_i)}{n},
+-i(\boldtheta)_{ij} = \me[\boldtheta] \frac{\partial^2 \ln \rho_{\boldtheta}(X_1)}{\partial \theta_i \partial \theta_j} \stackrel{\boldtheta\text{-п.н.}}{\longleftarrow} \frac{1}{n}\sum_{l=1}^n \frac{\partial^2 \ln \rho_{\boldtheta}(X_l)}{\partial \theta_i \partial \theta_j} = \frac{\partial^2}{\partial \theta_i \partial \theta_j}\sum_{l=1}^n \frac{\ln \rho_{\boldtheta}(X_l)}{n},
 \]
 информация Фишера характеризует выпуклость оптимизируемой функции правдоподобия. Чем выше информация, тем более ярко будет выражен искомый максимум правдоподобия; чем ниже информация, тем более размыто он будет выделяться среди своей окрестности.
 

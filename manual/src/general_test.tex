@@ -176,13 +176,13 @@ stat = -n
 for i in range(1, n + 1):
     stat -= 2 * (2 * i - 1) * np.log(cdf(ordered[i - 1])) / (2 * n)
     stat -= 2 * (1 - (2 * i - 1) / (2 * n)) * np.log(1 - cdf(ordered[i - 1]))
-print(f"Anderson-Darling test's staticstic - {stat}")
+print(f"Anderson-Darling test's statistic - {stat}")
     \end{minted}
 \end{example}
 \begin{lstlisting}
 Kolmogorov test's pvalue - 0.18241574592222012
 Cramer-von Mises-Smirnov's pvalue - 0.1267607929221075
-Anderson-Darling test's staticstic - inf
+Anderson-Darling test's statistic - inf
 \end{lstlisting}
 \begin{figure}[H]
     \centering
@@ -385,22 +385,34 @@ P-value is 0.0384293188578885
 	Для выборки из стран мира (данные можно взять, например, \href{https://www.kaggle.com/datasets/tanuprabhu/population-by-country-2020/data}{отсюда}) и уровня значимости $0.05$ проверить гипотезу о том, что численность населения подчиняется закону Бенфорда.
 \end{problem}
 
+\begin{problem}
+	Критерий $\chi^2$ подходит для проверки не только большого уклонения от нулевой гипотезы, но и подозрительно точного соответствия ей. В этом случае можно взять критерий вида
+\[
+R_{\alpha}' = \{\mathbf{x}\colon \chi^2(\mathbf{x}) \ge \chi^2_{k-1,1-\alpha/2} \vee \chi^2(\mathbf{x}) \le \chi^2_{k-1,\alpha/2}\}.
+\]
+Критерий выше будет отклонять нулевую гипотезу и когда данные далеки от теории, и когда они слишком хорошо ею описываются. Найдите $\textrm{pvalue}(\mathbf X)$ такого критерия.
+\end{problem}
+
 \begin{problem}\label{distance_equivalence}
     Статистика $\chi^2$ по сути своей является некоторой мерой расхождения между теоретическим распределением и эмпирическим, полученным по наблюдаемым частотам. В качестве расстояния между распределениями можно использовать и другие аналоги, которые, впрочем, будут в некотором смысле эквивалентны исходному. Вам предлагается это проверить.
     
     Напомним, что \textit{дивергенцией Кульбака-Лейблера} двух дискретных распределений $\mathsf{P} = (p_1, \ldots, p_k)$ и $\mathsf{Q} = (q_1, \ldots, q_k)$ называется величина
     \[
-    D(\mathsf{P} \parallel \mathsf{Q}) = \sum_{i=1}^k p_i \cdot \log\frac{p_i}{q_i}.
+    KL(\mathsf{P} \parallel \mathsf{Q}) = \sum_{i=1}^k p_i \cdot \log\frac{p_i}{q_i}.
     \]
 
     Пусть $k$-гранный кубик с вероятностями выпадения $i$-ой грани $p_i^0$ подкидывают $n$ раз, $(\nu_1, \ldots, \nu_k)$ --- наблюдаемые частоты, а $p_i = \nu_i / n$. Докажите, что
     \[
-    2n \cdot D(\mathsf{P} \parallel \mathsf{P}^0) \stackrel{d}{\rightarrow} \chi^2_{k-1},\;\;\;n\to \infty.
+    2n \cdot KL(\mathsf{P} \parallel \mathsf{P}^0) \stackrel{d}{\rightarrow} \chi^2_{k-1},\;\;\;n\to \infty.
     \]
-    Что можно сказать про сходимость статистики $2n \cdot D(\mathsf{P}^0 \parallel \mathsf{P})$? Какую из этих статистик лучше использовать в качестве основы критерия?
+    Что можно сказать про сходимость статистики $2n \cdot KL(\mathsf{P}^0 \parallel \mathsf{P})$? Какую из этих статистик лучше использовать в качестве основы критерия?
 \end{problem}
 
 \begin{problem}
     Модифицируйте критерий Колмогорова таким образом, чтобы, во-первых, в качестве основной гипотезы $H_0\colon \mathsf{P} = \mathsf{P}_0$ можно было выбрать произвольное распределение $\mathsf{P}_0$ (необязательно непрерывное), и, во-вторых, критерий остался состоятельным против альтернативы $H_1\colon \mathsf{P} \ne \mathsf{P}_0$.
+\end{problem}
+
+\begin{problem}
+	Для выборки $X_1, \ldots, X_n$ посчитайте статистику-$\omega^2$ критерия Крамера-фон Мизеса-Смирнова (a.k.a с весовой функцией $\psi \equiv 1$) для $\mathsf{P}_0 = \ud\{1, 2, 3\}$ и представьте её предельное распределение при верности нулевой гипотезы в виде $\|\boldxi\|^2$, где $\boldxi \sim \mathcal{N}(0, \Sigma)$. Будет ли критерий, основанный на этой статистике, состоятельным против общем альтернативы?
 \end{problem}
 

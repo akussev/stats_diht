@@ -91,7 +91,7 @@
     При больших $n$ это отклонение будет невелико, однако если выборка мала, множитель $\frac{n-1}{n}$ может существенно поменять оценку, поэтому часто вместо обычной выборочной дисперсии берут её несмещённый аналог $S^2 = \frac{n}{n-1}s^2$ (обозначая её большой буквой, мы как бы указываем на её превосходство над обычной выборочной дисперсией).
 \end{example}
 
-Это свойство весьма логичное, но его очевидно недостаточно, чтобы утверждать, что оценка хоть сколь-нибудь пригодна. Например, если $\me X_1 = \theta$, то $X_1$ -- несмещённая оценка параметра $\theta$, хотя она не использует всю мощь выборки. Это подводит нас к асимптотическим свойствам оценок: нам бы хотелось, чтобы с ростом размера выборки увеличилась бы и точность в предсказании параметра.
+Это свойство весьма логичное, но его очевидно недостаточно, чтобы утверждать, что оценка хоть сколь-нибудь пригодна. Например, если $\me X_1 = \theta$, то $X_1$ --- несмещённая оценка параметра $\theta$, хотя она не использует всю мощь выборки. Это подводит нас к асимптотическим свойствам оценок: нам бы хотелось, чтобы с ростом размера выборки увеличилась бы и точность в предсказании параметра.
 \begin{definition}
 Пусть $\mathbf X = (X_1, \ldots, X_n)$ --- выборка. Оценка $\theta^*_n = \theta^*_n(\mathbf X)$ называется \textit{состоятельной} оценкой функции $\tau(\theta)$, если для любого $\theta \in \Theta$ выполнено $\theta^*_n \stackrel{\pth}{\to} \tau(\theta)$. Оценка $\theta^*_n$ называется \textit{сильно состоятельной} оценкой $\tau(\theta)$, если для любого $\theta \in \Theta$ выполнено $\theta^*_n \stackrel{\pth\text{-п.н.}}{\longrightarrow} \tau(\theta)$.
 \end{definition}
@@ -187,7 +187,7 @@
         \end{aligned}
         \right.
     \end{gather*}
-    Стало быть, $\sqrt{n}(X_{(n)} - \theta), \sqrt{n}X_{(1)} \stackrel{d_{\theta}}{\longrightarrow} 0 \sim \mathcal{N}(0, 0)$ (мы считаем нуль нормально распределённым), и по лемме Слуцкого $\sqrt{n}(\overline{\mathbf X} + X_{(n)}/2 - \theta) \stackrel{d_{\theta}}{\longrightarrow} \mathcal{N}(0, \va \overline{\mathbf X})$, $\sqrt{n}(X_{(1)} + X_{(n)} - \theta) \stackrel{d_{\theta}}{\longrightarrow} 0$. Таким образом, эти оценки будут ещё и асимптотически нормальными.
+    Стало быть, $\sqrt{n}(X_{(n)} - \theta), \sqrt{n}X_{(1)} \stackrel{d_{\theta}}{\longrightarrow} 0 \sim \mathcal{N}(0, 0)$ (мы считаем нуль нормально распределённым), и по лемме Слуцкого $\sqrt{n}(\overline{\mathbf X} + X_{(n)}/2 - \theta) \stackrel{d_{\theta}}{\longrightarrow} \mathcal{N}(0, \va X_1)$, $\sqrt{n}(X_{(1)} + X_{(n)} - \theta) \stackrel{d_{\theta}}{\longrightarrow} 0$. Таким образом, эти оценки будут ещё и асимптотически нормальными.
     
     Как мы видим, скорость сходимости оценки $\widetilde{\theta}(\mathbf X)$ ещё больше, чем $\sqrt{n}$, попробуем уточнить её и подберём $\delta$ так, чтобы распределение $n^{\delta}(\theta - X_{(n)})$ было чем-то нетривиальным.
     \begin{gather*}
@@ -216,26 +216,33 @@
 Как мы могли видеть ранее, одних (У)ЗБЧ и ЦПТ (в том числе и их многомерных аналогов) уже достаточно для доказательства свойств простых оценок. К тому же сходимости почти наверное и по вероятности можно складывать, умножать или брать от них непрерывные функции. Но для доказательства асимптотической нормальности, и уж тем более нахождения асимптотической дисперсии этого мало, поэтому представляется крайне полезной следующая
 
 \begin{theorem}[label=delta_method]{дельта-метод}{}
-    Пусть $\boldxi_n \stackrel{d}{\to} \boldxi$, где $\boldxi, \boldxi_n$ --- $m$-мерные случайные векторы, $F(x) \colon \R^m \to \R^k$ --- функция, дифференцируемая в точке $\mathbf{a}$, и $b_n \to 0$, $b_n \ne 0$. Тогда 
+	Пусть $\boldxi$ и $(\boldxi_n, n \in \N)$ --- случайные векторы, $\tau \colon \R^m \to \R^k$ --- функция, дифференцируемая в точке $\mathbf{a}$, а $\omega_n\to +\infty$ --- произвольная последовательность положительных чисел, для которых
+	\begin{equation}\label{delta_method_premise}
+		\omega_n \cdot \left(\boldxi_n - \mathbf{a}\right) \stackrel{d}{\to} \boldxi
+	\end{equation}
+	
+	Тогда
+
+	\[
+	\omega_n\cdot\left(\tau\bigl(\boldxi_n\bigr) - \tau(\mathbf{a})\right) \stackrel{d}{\to} d_{\mathbf{a}}\tau(\boldxi).
+	\]
+
+    В частности, для $m = k = 1$ сходимость справа имеет вид
     \[
-    \frac{F(\mathbf a + b_n\boldxi_n) - F(\mathbf a)}{b_n} \stackrel{d}{\to} d_{\mathbf a}F(\boldxi).
-    \]
-    В частности, для $m = k = 1$ эта сходимость имеет вид
-    \[
-    \frac{F(a + b_n\xi_n) - F(a)}{b_n} \stackrel{d}{\to} F'(a)\xi.
+    \omega_n\cdot\left(\tau\bigl(\xi_n\bigr) - \tau(a)\right) \stackrel{d}{\to} \tau(a) \cdot \xi.
     \]
 \end{theorem}
 
 \begin{proof}
-    По определению дифференцируемости
+    Пусть имеет место сходимость \eqref{delta_method_premise}. По определению дифференцируемости
     \begin{gather*}
-        F(\mathbf a + b_n\boldxi_n) = F(\mathbf a) + d_{\mathbf a}F(b_n\boldxi_n) + o(\|b_n\boldxi_n\|),\\
-        \frac{F(\mathbf a + b_n\boldxi_n) - F(\mathbf a)}{b_n} = d_{\mathbf a}F(\boldxi_n) + \boldalpha(b_n\boldxi_n) \|\boldxi_n\|,
+    	\tau\bigl(\boldxi_n\bigr) = \tau(\mathbf{a}) + d_{\mathbf{a}}\tau(\boldxi_n - \mathbf{a}) + o(\|\boldxi_n - \mathbf{a}\|),\\
+        \omega_n\cdot\left(\tau\bigl(\boldxi_n\bigr) - \tau(\mathbf{a})\right) = d_{\mathbf{a}}\tau\left(\omega_n(\boldxi_n - \mathbf{a})\right) + \boldalpha(\boldxi_n - \mathbf{a}) \left\|\omega_n(\boldxi_n - \mathbf{a})\right\|,
     \end{gather*}
-    где $\|\boldalpha(\mathbf h)\| \to 0$ при $\|\mathbf h\| \to 0$, поэтому можно считать, что $\boldalpha(\mathbf h)$ непрерывна в нуле. Так как по лемме Слуцкого $b_n\boldxi_n \stackrel{d}{\to} \mathbf{0}$, то по теореме о наследовании сходимости $\boldalpha(b_n\boldxi_n) \stackrel{d}{\to} \mathbf{0}$. Дважды применяя лемму Слуцкого, получаем сначала $\boldalpha(b_n\boldxi_n)\|\boldxi_n\| \stackrel{d}{\to} \mathbf{0}$, а потом $d_{\mathbf a}F(\boldxi_n) + \boldalpha(b_n\boldxi_n) \|\boldxi_n\| \stackrel{d}{\to} d_{\mathbf a}F(\boldxi)$, что приводит нас к требуемой сходимости.
+    где $\|\boldalpha(\mathbf h)\| \to 0$ при $\|\mathbf h\| \to 0$, поэтому можно считать, что $\boldalpha(\mathbf h)$ непрерывна в нуле. Применение леммы Слуцкого для сходимости \eqref{delta_method_premise} и $1/\omega_n \to 0$ приводит нас к тому, что $\boldxi_n - \mathbf{a} \stackrel{d}{\to} \mathbf{0}$, тогда по теореме о наследовании сходимости $\boldalpha(\boldxi_n - \mathbf{a}) \stackrel{d}{\to} \mathbf{0}$. Дважды применяя лемму Слуцкого, получаем сначала $\boldalpha(\boldxi_n - \mathbf{a}) \left\|\omega_n(\boldxi_n - \mathbf{a})\right\| \stackrel{d}{\to} \mathbf{0}$, а потом $d_{\mathbf{a}}\tau\left(\omega_n(\boldxi_n - \mathbf{a})\right) + \boldalpha(\boldxi_n - \mathbf{a}) \left\|\omega_n(\boldxi_n - \mathbf{a})\right\| \stackrel{d}{\to} d_{\mathbf a}F(\boldxi)$, что приводит нас к требуемой сходимости.
 \end{proof}
 
-Из этой теоремы следует замечательное утверждение, в англоязычной литературе именно его называют дельта-методом.
+Наиболее частым примером применения дельта-метода является перенос асимптотической нормальности с оценки на функцию от неё.
 
 \begin{corollary*}[о наследовании асимптотической нормальности]\label{safe_norm}
     Пусть $\Theta \subset \R^m$, $\widehat{\boldtheta}$ --- асимптотически нормальная оценка параметра $\boldtheta$ с асимптотической ковариационной матрицей $\Sigma(\boldtheta)$, а $\tau\colon \R^m \to \R^k$ дифференцируема на $\Theta$. Тогда $\tau\bigl(\widehat{\boldtheta}\bigr)$ асимптотически нормальная оценка $\tau(\boldtheta)$ с асимптотической ковариационной матрицей $d_{\boldtheta}\tau \cdot \Sigma(\boldtheta) \cdot d_{\boldtheta}\tau^T$, то есть
@@ -248,19 +255,24 @@
     \]
 \end{corollary*}
 
-Этот результат можно понимать так: к $\widehat{\boldtheta}$, которая является <<примерно>> нормально распределённой при больших $n$, применяется преобразование, которое в малой окрестности $\boldtheta$ <<почти что>> линейное с матрицей $d_{\boldtheta}\tau$.
-
 \begin{proof}
     Зафиксируем произвольное $\boldtheta \in \Theta$. По условию имеется сходимость
     \[
-    \boldxi_n = \sqrt{n}\left(\widehat{\boldtheta} - \boldtheta\right) \stackrel{d_{\boldtheta}}{\to} \boldxi \sim \mathcal{N}(\mathbf 0, \Sigma(\boldtheta)).
+    \sqrt{n}\left(\widehat{\boldtheta} - \boldtheta\right) \stackrel{d_{\boldtheta}}{\to} \boldxi \sim \mathcal{N}(\mathbf 0, \Sigma(\boldtheta)).
     \]
-    Положим $b_n = 1 / \sqrt{n}$, $\mathbf a = \boldtheta$. Тогда по теореме \ref{delta_method}
+    Положим $\omega_n = \sqrt{n}$, $\mathbf a = \boldtheta$. Тогда по теореме \ref{delta_method}
     \[
     \sqrt{n}\left(\tau\bigl(\widehat{\boldtheta}\bigr) - \tau(\boldtheta)\right) \stackrel{d_{\boldtheta}}{\to} d_{\boldtheta}\tau(\boldxi).
     \]
     Так как $d_{\boldtheta}\tau$ --- линейное преобразование, то $d_{\boldtheta}\tau(\boldxi)$ также является гауссовским вектором, среднее и ковариационная матрица которого равна $\mathbf 0$ и $d_{\boldtheta}\tau \cdot \Sigma(\boldtheta) \cdot d_{\boldtheta}\tau^T$ соответственно.
 \end{proof}
+
+\begin{wrapfigure}[12]{r}{0.45\textwidth}
+\vspace{-5pt}
+\includegraphics[width=0.45\textwidth]{pic/delta_method/delta_method}
+\end{wrapfigure}
+
+На примере следствия разберём, как можно понимать дельта-метод. Асиптотическая нормальность $\widehat{\boldtheta}$ говорит нам, что распределение оценки <<примерно>> нормальное и сосредоточено в малой окрестности точки $\boldtheta$, коли нам приходится умножать разность $\widehat{\boldtheta} - \boldtheta$ на нечто растущее для получения нетривиального предела. Но накладываемое преобразование в малой окрестности точки <<почти что>> линейное с матрицей $d_{\boldtheta}\tau$. А нормальные векторы очень дружат с линейными преобразованиями, отчего в результате получается вновь что-то нормальное, разве что слегка растянутое или сжатое. И не может не радовать, что все эти махания руками в кавычках формализуются с помощью леммы Слуцкого.
 
 \begin{example}\label{delta_method_for_exp}
     Пусть $\mathbf X = (X_1, \ldots, X_n)$ --- выборка из экспоненциального распределения с параметром $\theta$, т.е. $\rho_{\theta}(t) = \theta e^{-\theta t}I(t > 0)$. Рассмотрим статистику $\left(k! / \overline{\mathbf X^k}\right)^{1/k}$, где $k$ --- некоторое фиксированное натуральное число, и докажем, что она является асимптотически нормальной оценкой $\theta$.

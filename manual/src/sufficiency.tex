@@ -240,6 +240,18 @@
 \subsection*{Задачи}
 
 \begin{problem}
+	Для семейства распределений
+	
+	\textbf{(а)} $\mathcal{P} = \{\bernd(p)\colon p \in (0, 1)\}$;
+
+	\textbf{(б)} $\mathcal{P} = \{\mathcal{N}(a, \sigma^2)\colon a \in \R, \sigma^2 > 0\}$;
+
+	\textbf{(в)} $\mathcal{P} = \{\betad(\alpha, \beta)\colon \alpha, \beta > 0\}$ 
+	
+	предъявите достаточную статистику фиксированной размерности (то есть независящей от размера выборки).
+\end{problem}
+
+\begin{problem}
     Покажите, что достаточная статистика из примера \ref{suff_for_not_exp} полна.
 \end{problem}
 
@@ -257,6 +269,10 @@
 
 \begin{problem}
 	В условиях задачи \ref{unbiased-est-for-exp} при помощи полученной в ней несмещённой оценки найти оптимальную оценку функции $e^{-\theta}$.
+\end{problem}
+
+\begin{problem}
+	Докажите, что в модели $\ud(\theta, \theta + 1)$, где $\Theta = \{\theta > 0\}$, статистика $(X_{(1)}, X_{(n)})$ является достаточной, но не полной. Есть ли в ней хоть какая-нибудь полная достаточная статистика?
 \end{problem}
 
 \begin{problem}
@@ -281,6 +297,19 @@
     Докажите, что если $T(\mathbf X)$ --- достаточная статистика, то оценка максимального правдоподобия является функцией от $T(\mathbf X)$.
 \end{problem}
 
+\begin{problem}
+	\textbf{(а)} Достаточная статистика $S(\mathbf X)$ называется \textit{минимальной}, если для любой другой достаточной статистики $T(\mathbf X)$ найдётся функция $\varphi$ такая, что $S = \varphi \circ T$. Пусть про статистику $S(\mathbf X)$ известно, что 
+\[
+\forall \mathbf x, \mathbf y\colon \left(S(\mathbf x) = S(\mathbf y) \Longleftrightarrow \frac{\rho_{\theta}(\mathbf x)}{\rho_{\theta}(\mathbf y)} \equiv \const\right),
+\]
+где $\rho_{\theta}(\mathbf x)$ --- совместная плотность выборки. Покажите, что она является минимальной достаточной статистикой.
 
+\textit{Замечание.} Можно считать известным факт, что найдётся измеримая $S^{-1}$ такая, что $S(S^{-1}(s)) \equiv s$.
+
+\textbf{(б)} Найдите минимальную достаточную статистику в модели масштаба распределения Коши:
+\[
+\rho_{\theta}(x) = \frac{\theta}{\pi (x^2 + \theta^2)}.
+\]
+\end{problem}
 
 
