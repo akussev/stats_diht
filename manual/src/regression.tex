@@ -56,11 +56,11 @@ Z^T(\mathbf X - \pr_{\mathcal{L}} \mathbf X) = 0 \Longrightarrow Z^T \mathbf X =
 Сразу выделим полезные свойства полученной оценки.
 
 \begin{proposition}\label{mnk_prop}
-    Оценка по методу наименьших квадратов имеет матожидание, равное $\boldtheta$, и её ковариационная матрица равна $\sigma^2 (Z^T Z)^{-1}$.
+    Оценка по методу наименьших квадратов имеет мат. ожидание, равное $\boldtheta$, и её ковариационная матрица равна $\sigma^2 (Z^T Z)^{-1}$.
 \end{proposition}
 
 \begin{proof}
-По линейности матожидания:
+По линейности мат. ожидания:
 \begin{gather*}
     \me[\boldtheta, \sigma^2] \widehat{\boldtheta} = \me[\boldtheta, \sigma^2] ((Z^T Z)^{-1} Z^T \mathbf X) = (Z^T Z)^{-1} Z^T \me[\boldtheta, \sigma^2] \mathbf X = (Z^T Z)^{-1} Z^T \me[\boldtheta, \sigma^2] (Z\boldtheta + \boldepsilon) = \\
     = (Z^T Z)^{-1} Z^T \cdot Z\boldtheta = \boldtheta.
@@ -121,11 +121,11 @@ Z^T(\mathbf X - \pr_{\mathcal{L}} \mathbf X) = 0 \Longrightarrow Z^T \mathbf X =
     \me[\boldtheta, \sigma^2]\|B\mathbf X\|^2 = \me[\boldtheta, \sigma^2] \|B
     \boldepsilon\|^2 = \me[\boldtheta, \sigma^2] \boldepsilon^T B^T B \boldepsilon \eqcirc
     \]
-    Провернём классический трюк: представим число под знаком матожидания как след одноэлементной матрицы. Это позволит нам воспользоваться свойством следа матрица о циклической перестановке:
+    Провернём классический трюк: представим число под знаком мат. ожидания как след одноэлементной матрицы. Это позволит нам воспользоваться свойством следа матрица о циклической перестановке:
     \[
     \eqcirc \tr \me[\boldtheta, \sigma^2] \boldepsilon^T B^T B \boldepsilon = \tr \me[\boldtheta, \sigma^2] B^T B \boldepsilon \boldepsilon^T \eqcirc
     \]
-    Матрица $B = E_n - Z(Z^T Z)^{-1} Z^T$ симметрична и отвечает проектору, поэтому $B^TB = B^2 = B$, значит, по линейности матожидания
+    Матрица $B = E_n - Z(Z^T Z)^{-1} Z^T$ симметрична и отвечает проектору, поэтому $B^TB = B^2 = B$, значит, по линейности мат. ожидания
     \begin{gather*}
         \eqcirc \tr B \cdot \me[\boldtheta, \sigma^2] \boldepsilon \boldepsilon^T = \tr B \cdot \va[\boldtheta, \sigma^2] \boldepsilon = \tr B \cdot \sigma^2 E_n = \sigma^2 \tr B = \sigma^2 \tr (E_n - Z(Z^T Z)^{-1} Z^T) = \\
         = \sigma^2(n - \tr\left[ (Z^T Z)^{-1} Z^TZ\right]) = \sigma^2(n - \tr E_k) = \sigma^2(n-k).
@@ -243,7 +243,7 @@ X_{ab} / 2
 \[
 \widetilde{\mathbf X} = \widetilde{Z} \boldtheta + \widetilde{\boldepsilon},
 \]
-где $\widetilde{\mathbf X} = V^{-1/2}\mathbf X$, $\widetilde{Z} = V^{-1/2}Z$ и $\widetilde{\boldepsilon} = V^{-1/2}\boldepsilon$. Случайная составляющая $\widetilde{\boldepsilon}$ всё ещё имеет нулевое матожидание и матрицу ковариаций
+где $\widetilde{\mathbf X} = V^{-1/2}\mathbf X$, $\widetilde{Z} = V^{-1/2}Z$ и $\widetilde{\boldepsilon} = V^{-1/2}\boldepsilon$. Случайная составляющая $\widetilde{\boldepsilon}$ всё ещё имеет нулевое мат. ожидание и матрицу ковариаций
 \[
 \va[]\widetilde{\boldepsilon} = \va[]\left[V^{-1/2}\boldepsilon\right] = V^{-1/2} \cdot \va[]\boldepsilon \cdot V^{-1/2} = V^{-1/2} \cdot \sigma^2 V \cdot V^{-1/2} = \sigma^2E_n.
 \]
@@ -259,7 +259,7 @@ X_{ab} / 2
     \[
     \mathbf X = \mu \mathbf{1} + \sigma \mathbf{m} + \sigma \boldepsilon,
     \]
-    где $\boldepsilon = \mathbf Y - \mathbf{m}$, и как несложно понять, $\me[]\boldepsilon = \mathbf{0}$, $\va[] \boldepsilon = V$. Таким образом, получена обобщённая модель линейной регрессии, которая отчасти похожа на QQ-plot: в ней по матожиданию $i$-ой порядковой статистики выборки из $F_0$ нужно с точностью до сдвига предсказать значение $i$-ой по порядку величины.
+    где $\boldepsilon = \mathbf Y - \mathbf{m}$, и как несложно понять, $\me[]\boldepsilon = \mathbf{0}$, $\va[] \boldepsilon = V$. Таким образом, получена обобщённая модель линейной регрессии, которая отчасти похожа на QQ-plot: в ней по мат. ожиданию $i$-ой порядковой статистики выборки из $F_0$ нужно с точностью до сдвига предсказать значение $i$-ой по порядку величины.
 
     В терминах написанного выше ясно, что матрица признаков $Z$ состоит из столбцов $\mathbf{1}$ и $\mathbf{m}$. С этим знанием посчитаем наилучшую оценку $\mu$ и $\sigma$:
     \begin{gather*}
@@ -399,7 +399,7 @@ n_1 & 0 & 0\\
 \end{theorem}
 
 \begin{proof}
-Равенство $\me[] \pr_{L_i} \mathbf X = \pr_{L_i} \mathbf a$ очевидно в силу линейности матожидания, а проекция есть линейное преобразование. Посему для простоты перейдём к рассмотрению вектора $\mathbf Y = (\mathbf X - \mathbf a) / \sigma \sim \mathcal{N}(\mathbf 0, E_n)$: теперь достаточно показать, что проекции $\mathbf Y$ независимы и $\|\pr_{L_i}\mathbf Y\|^2 \sim \chi^2_{\dim L_i}$.
+Равенство $\me[] \pr_{L_i} \mathbf X = \pr_{L_i} \mathbf a$ очевидно в силу линейности мат. ожидания, а проекция есть линейное преобразование. Посему для простоты перейдём к рассмотрению вектора $\mathbf Y = (\mathbf X - \mathbf a) / \sigma \sim \mathcal{N}(\mathbf 0, E_n)$: теперь достаточно показать, что проекции $\mathbf Y$ независимы и $\|\pr_{L_i}\mathbf Y\|^2 \sim \chi^2_{\dim L_i}$.
 
 Пусть $\mathfrak{E} = (\mathbf e_1, \ldots, \mathbf e_n)$~--- о/н базис, согласованный с разложением $L_1 \oplus \ldots \oplus L_r$, то есть $\mathfrak{E} = (\mathfrak{E}_1, \ldots, \mathfrak{E}_r)$, где $\mathfrak{E}_i$~--- базис в $L_i$, а $S$~--- матрица перехода от этого базиса к стандартному. Так как матрица перехода от одного о/н базиса к другому~--- ортогональна, то вектор $S\mathbf Y$ будет иметь распределение $\mathcal{N}(\mathbf 0, S\cdot E_n \cdot S^T) = \mathcal{N}(\mathbf 0, E_n)$, поэтому координаты $(S\mathbf Y)_j = \mathbf e_j^T \mathbf Y$ в новом базисе независимы в совокупности и имеют стандартное нормальное распределение.
 
@@ -447,7 +447,7 @@ n_1 & 0 & 0\\
 \end{gather*}
 где $T_{n-k, p}$ -- $p$-квантиль распределения $T_{n-k}$. Здесь мы воспользовались симметричностью распределения Стьюдента, благодаря которой выполнено $T_{n-k, (1+\gamma)/2} = -T_{n-k, (1-\gamma)/2}$.
 
-Впрочем, из сказанного выше легко понять, как построить доверительный интервал для произвольной линейной комбинации неизвестных параметров, что особенно полезно в контексте примера \ref{gauss_example}. Пусть необходимо оценить функцию $\tau(\boldtheta) = \mathbf c^T\boldtheta$, где $\mathbf c \in \R^k$ --- вектор из коэффициентов, с которыми мы берём те или иные компоненты вектора $\boldtheta$. По линейности матожидания несмещённой оценкой $\tau(\boldtheta)$ (а значит и оптимальной) будет оценка $\mathbf c^T\widehat{\boldtheta} \sim \mathcal{N}(\mathbf c^T\boldtheta, \sigma^2 \mathbf c^T (Z^TZ)^{-1}\mathbf c)$ (в случае $\tau(\boldtheta) = \theta_i$ вектор $\mathbf c$ будет содержать лишь одну единицу на $i$-ой позиции посреди нулей, поэтому дисперсия оценки будет равной $\sigma^2\left[(Z^T Z)^{-1}\right]_{ii}$, как было получено выше). Таким образом,
+Впрочем, из сказанного выше легко понять, как построить доверительный интервал для произвольной линейной комбинации неизвестных параметров, что особенно полезно в контексте примера \ref{gauss_example}. Пусть необходимо оценить функцию $\tau(\boldtheta) = \mathbf c^T\boldtheta$, где $\mathbf c \in \R^k$ --- вектор из коэффициентов, с которыми мы берём те или иные компоненты вектора $\boldtheta$. По линейности мат. ожидания несмещённой оценкой $\tau(\boldtheta)$ (а значит и оптимальной) будет оценка $\mathbf c^T\widehat{\boldtheta} \sim \mathcal{N}(\mathbf c^T\boldtheta, \sigma^2 \mathbf c^T (Z^TZ)^{-1}\mathbf c)$ (в случае $\tau(\boldtheta) = \theta_i$ вектор $\mathbf c$ будет содержать лишь одну единицу на $i$-ой позиции посреди нулей, поэтому дисперсия оценки будет равной $\sigma^2\left[(Z^T Z)^{-1}\right]_{ii}$, как было получено выше). Таким образом,
 \begin{gather*}
     \frac{\mathbf c^T\widehat{\boldtheta} - \mathbf c^T\boldtheta}{\sqrt{\sigma^2 \mathbf c^T (Z^TZ)^{-1}\mathbf c}}\sim \mathcal{N}(0, 1) \Longrightarrow \frac{\mathbf c^T\widehat{\boldtheta} - \mathbf c^T\boldtheta}{\sqrt{\widehat{\sigma^2} \mathbf c^T (Z^TZ)^{-1}\mathbf c}} \sim T_{n-k},\\
     \pth[\boldtheta, \sigma^2]\left(\mathbf c^T\widehat{\boldtheta} - T_{n-k,(1+\gamma)/2}\sqrt{\widehat{\sigma^2} \mathbf c^T (Z^TZ)^{-1}\mathbf c} < \mathbf c^T\boldtheta < \mathbf c^T\widehat{\boldtheta} + T_{n-k, (1+\gamma)/2}\sqrt{\widehat{\sigma^2} \mathbf c^T (Z^TZ)^{-1}\mathbf c} \right) =\gamma,
@@ -461,7 +461,7 @@ H_0\colon T\boldtheta = \boldtau,
 \]
 где $T\in\R^{m \times k}$, $\boldtau \in \R^m$ -- известные величины, причём будем допускать, что $\rk{T} = m \le k$. Отсюда собственно и название гипотезы: мы накладываем некоторые линейные ограничения на параметр $\boldtheta$.
 
-Из утверждения \ref{mnk_prop} мы знаем матожидание и ковариационную матрицу у $\widehat{\boldtheta}$, а значит, можем найти её и у $T\widehat{\boldtheta}$:
+Из утверждения \ref{mnk_prop} мы знаем мат. ожидание и ковариационную матрицу у $\widehat{\boldtheta}$, а значит, можем найти её и у $T\widehat{\boldtheta}$:
 \begin{gather*}
     \me[\boldtheta, \sigma^2] T\widehat{\boldtheta} = T\me[\boldtheta, \sigma^2] \widehat{\boldtheta} = T\boldtheta,\\
     \va[\boldtheta, \sigma^2] T\widehat{\boldtheta} = T \left[\va[\boldtheta, \sigma^2] \widehat{\boldtheta}\right] T^T = \sigma^2 \underbrace{T (Z^T Z)^{-1} T^T}_{\phantom{0}=B} = \sigma^2 B.
@@ -490,7 +490,7 @@ T\widehat{\boldtheta} \sim \mathcal{N}(T\boldtheta, \sigma^2 B).
 
 Итоговый критерий записывается так:
 \[
-R = \left\{\frac{(T\widehat{\boldtheta} - \tau)^T B^{-1} (T\widehat{\boldtheta} - \tau)}{\|\mathbf X - Z \widehat{\boldtheta}\|^2}\cdot \frac{n - k}{m} > f_{1-\alpha}\right\},
+R = \left\{\frac{(T\widehat{\boldtheta} - \boldtau)^T B^{-1} (T\widehat{\boldtheta} - \boldtau)}{\|\mathbf X - Z \widehat{\boldtheta}\|^2}\cdot \frac{n - k}{m} > f_{1-\alpha}\right\},
 \]
 где $f_{p}$ -- $p$-квантиль распределения Фишера со степенями свободы $m$ и $n-k$.
 

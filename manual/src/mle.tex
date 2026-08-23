@@ -25,13 +25,13 @@ L_{\theta}(X_1, \ldots, X_n) = \ln{f_{\theta}(X_1, \ldots, X_n)}
 \]
 \end{definition}
 
-Заметим, что точки максимума функции правдоподобия и её логарифмического брата-близнеца совпадают в силу монотонности логарифма, поэтому максимизировать можно любую из этих функций. Второй вариант обычно предпочтительнее, так как минимизировать сумму гораздо проще, чем произведение.
+Заметим, что точки максимума функции правдоподобия и её логарифмического брата-близнеца совпадают в силу монотонности логарифма, поэтому максимизировать можно любую из этих функций. Второй вариант обычно предпочтительнее, так как максимизировать сумму гораздо проще, чем произведение.
 
 {\small
 Может показаться, что такая оценка кардинально отличается от предыдущих, получаемых методом подстановки. Однако это не так, и ОМП можно задать как функционал от эмпирического распределения, который минимизирует <<расстояние>> между распределениями. Вероятно, это <<расстояние>> покажется знакомым, так как оно тесно связано с расстоянием Кульбака-Лейблера, которое имеет широкое применение в статистике и машинном обучении.
 
 \begin{definition}
-    Пусть $\mathsf{Q}$ --- вероятностная мера с обобщённой плотностью $q$, а $\mathsf{P}$ --- произвольное распределение. Введём величину, называемую \textit{кросс-энтропией}
+    Пусть $\mathsf{Q}$ --- вероятностная мера с обобщённой плотностью $q$, а $\mathsf{P}$ --- произвольное распределение. Введём величину, называемую \textit{кросс-энтропией}:
     \[
     H(\mathsf{P}, \mathsf{Q}) = -\int \ln{q(x)}\,\mathsf{P}(dx). 
     \]
@@ -60,10 +60,10 @@ G(\mathsf{P}) = \argmin_{\theta \in \Theta} H(\mathsf{P}, \pth)
 
     Значит, домножая его на $p$ и навешивая знак интеграла, получаем:
     \[
-    H(\mathsf{P}, \mathsf{P}) - H(\mathsf{P}, \mathsf{Q}) = \int p \ln{\frac{q}{p}}\,d\mu \le \int p \left(\frac{q}{p} - 1\right)\,d\mu = \int p \,d\mu - \int q \,d\mu = 1 - 1 = 0.
+    H(\mathsf{P}, \mathsf{P}) - H(\mathsf{P}, \mathsf{Q}) = \int p \ln{\frac{q}{p}}\,d\mu \le \int p \left(\frac{q}{p} - 1\right)\,d\mu = \int q \,d\mu - \int p \,d\mu = 1 - 1 = 0.
     \]
 
-    Причём по свойству интеграла Лебега равенство верно, когда $\mu$-п.н. $\ln{q/p} \ge q/p - 1$, то есть $q/p = 1$, что и требовалось.
+    Причём по свойству интеграла Лебега равенство верно, когда $\mu$-п.н. $\ln{q/p} = q/p - 1$, то есть $q/p = 1$, что и требовалось.
 \end{proof}
 
 По методу подстановки оценка для сего функционала может быть получена как
@@ -247,7 +247,7 @@ d (\det{\Sigma}) = \det{\Sigma} \cdot \langle\Sigma^{-T}, d \Sigma\rangle,
 
     Пусть теперь $\theta \ne 0$. В таком случае $\overline{\mathbf X} \stackrel{d}{\to} \theta \ne 0$, поэтому $\pth[](|\overline{\mathbf X}| \ge n^{-1/4}) \to 1$, и соответственно $\sqrt{n}I(|\overline{\mathbf X}| < n^{-1/4}) \stackrel{d}{\to} 0$. Всё по той же лемме Слуцкого имеем
     \[
-    \sqrt{n}(\theta^* - \theta) = \sqrt{n}(\overline{\mathbf X} - \theta) + \underbrace{\frac{\sqrt{n}}{2}\cdot I(|\overline{\mathbf X}| < n^{-1/4})}_{\stackrel{d}{\to}0} \stackrel{d}{\to} \mathcal{N}(0, 1). 
+    \sqrt{n}(\theta^* - \theta) = \sqrt{n}(\overline{\mathbf X} - \theta) - \overline{\mathbf X} \cdot \underbrace{\frac{\sqrt{n}}{2}\cdot I(|\overline{\mathbf X}| < n^{-1/4})}_{\stackrel{d}{\to}0} \stackrel{d}{\to} \mathcal{N}(0, 1). 
     \]
 
     Таким образом, асимптотическая дисперсия оценки равна
@@ -266,7 +266,7 @@ d (\det{\Sigma}) = \det{\Sigma} \cdot \langle\Sigma^{-T}, d \Sigma\rangle,
 
 \subsection{Натуральный градиентный спуск}\label{NGD}
 
-Вернёмся к понятию информации Фишера, введённой в прошлом параграфе. В этом разделе мы обсудим её геометрический смысл, который подскажет нам более эффективный способ нахождения максимума правдоподобия. Из задачи \ref{fisher-inf-is-second-derivative} читатель поймёт, что при дополнительных условиях регулярности информационную матрицу Фишера можно найти иным способом: как матожидание матрицы Гессе логарифма правдоподобия:
+Вернёмся к понятию информации Фишера, введённой в прошлом параграфе. В этом разделе мы обсудим её геометрический смысл, который подскажет нам более эффективный способ нахождения максимума правдоподобия. Из задачи \ref{fisher-inf-is-second-derivative} читатель поймёт, что при дополнительных условиях регулярности информационную матрицу Фишера можно найти иным способом: как мат. ожидание матрицы Гессе логарифма правдоподобия:
 \[
 I_{\mathbf X}(\boldtheta)_{ij} = - \me[\boldtheta] \frac{\partial^2 \ln \rho_{\boldtheta}(\mathbf X)}{\partial \theta_i \partial \theta_j}.
 \]
@@ -315,7 +315,7 @@ TODO
     \]
     У нас уже имеется довольно неплохая оценка $\theta^* = \widehat{\mu}$, у которой мы даже знаем асимптотическую дисперсию $\sigma^2(\theta) = \pi^2/4$. Однако для ОМП она будет равна $1 / i(\theta) = 2$, так как
     \[
-    i(\theta) = \me \left(\frac{\partial}{\partial \theta} L_{\theta}(X_1)\right)^2 = \me \left(\frac{-2(X_1 - \theta)}{1 + (X_1 - \theta)^2}\right)^2 = \int_{\R} \frac{4x^2}{\pi(1+x^2)^3}\,dx = \frac{1}{2},
+    i(\theta) = \me \left(\frac{\partial}{\partial \theta} L_{\theta}(X_1)\right)^2 = \me \left(\frac{2(X_1 - \theta)}{1 + (X_1 - \theta)^2}\right)^2 = \int_{\R} \frac{4x^2}{\pi(1+x^2)^3}\,dx = \frac{1}{2},
     \]
     то есть ещё есть куда стремиться. Но благо есть одношаговая оценка, построенная по $\widehat{\mu}$, и она уже будет иметь ту же самую асимптотическую дисперсию:
     \[
@@ -379,17 +379,17 @@ Variance for one-step estimator - 45.95128078716877
 
 Однако мы вообще говоря не знаем значений латентных переменных, чтобы за просто так оптимизировать совместную плотность. Можно было бы взять её маргинальную версию, беря интеграл по латентным переменным, но их распределение, очевидно, зависит от неизвестных параметров, которые мы хотели оценить посредством латентных переменных~--- замкнутый круг. Выход из него заключается в том, чтобы попеременно обновлять то значения параметров, то распределение на латентных переменных. Сделаем это следующим образом.
 
-Рассмотрим общую задачу максимизации логарифмической функции правдоподобия $L_{\mathbf x}(\boldtheta) = \ln \rho_{\boldtheta}(\mathbf x)$, и на текущем $t$-ом шаге мы взяли в качестве параметра $\boldtheta_t$. Используем его в условном распределении $\rho_{\boldtheta_t}(\mathbf z | \mathbf x)$, по которому возьмём матожидание полной плотности:
+Рассмотрим общую задачу максимизации логарифмической функции правдоподобия $L_{\mathbf x}(\boldtheta) = \ln \rho_{\boldtheta}(\mathbf x)$, и на текущем $t$-ом шаге мы взяли в качестве параметра $\boldtheta_t$. Используем его в условном распределении $\rho_{\boldtheta_t}(\mathbf z | \mathbf x)$, по которому возьмём мат. ожидание полной плотности:
 \[
 L_{\mathbf x}(\boldtheta) = \ln \int \rho_{\boldtheta}(\mathbf x, \mathbf z)\,dz = \ln \int \frac{\rho_{\boldtheta}(\mathbf x, \mathbf z)}{\rho_{\boldtheta_t}(\mathbf z | \mathbf x)}\rho_{\boldtheta_t}(\mathbf z | \mathbf x)\,dz = \ln \me[\mathbf z \sim \rho_{\boldtheta_t}(\mathbf z | \mathbf x)] \frac{\rho_{\boldtheta}(\mathbf x, \mathbf z)}{\rho_{\boldtheta_t}(\mathbf z | \mathbf x)}.
 \]
 
-Теперь, когда на сцене появилось матожидание, можно применить неравенство Йенсена и перейти к нижней оценки лог. функции правдоподобия, которую удобнее максимизировать.
+Теперь, когда на сцене появилось мат. ожидание, можно применить неравенство Йенсена и перейти к нижней оценки лог. функции правдоподобия, которую удобнее максимизировать.
 \[
 L_{\mathbf x}(\boldtheta) = \ln \me[\mathbf z \sim \rho_{\boldtheta_t}(\mathbf z | \mathbf x)] \frac{\rho_{\boldtheta}(\mathbf x, \mathbf z)}{\rho_{\boldtheta_t}(\mathbf z | \mathbf x)} \ge \me[\mathbf z \sim \rho_{\boldtheta_t}(\mathbf z | \mathbf x)] \left(\ln  \frac{\rho_{\boldtheta}(\mathbf x, \mathbf z)}{\rho_{\boldtheta_t}(\mathbf z | \mathbf x)}\right).
 \]
 
-Матожидание справа сокращённо называют ELBO (англ. \textsf{evidence lower bound}). Эта нижняя оценка обладает важным свойством: при $\boldtheta = \boldtheta_t$ в неравенстве выше достигается равенство. Действительно,
+Мат. ожидание справа сокращённо называют ELBO (англ. \textsf{evidence lower bound}). Эта нижняя оценка обладает важным свойством: при $\boldtheta = \boldtheta_t$ в неравенстве выше достигается равенство. Действительно,
 \[
 \mathrm{ELBO}(\boldtheta_t) = \me[\mathbf z \sim \rho_{\boldtheta_t}(\mathbf z | \mathbf x)] \left(\ln  \frac{\rho_{\boldtheta_t}(\mathbf x, \mathbf z)}{\rho_{\boldtheta_t}(\mathbf z | \mathbf x)}\right) = \\
 \]
@@ -412,7 +412,7 @@ J(\theta) = \me[\mathbf z \sim \rho_{\boldtheta_t}(\mathbf z | \mathbf x)] \left
 	\item Для $t$ от 0 до $k$ повторяем следующее:
 	\begin{itemize}
 		\item Берём текущее значение параметров $\boldtheta_t$;
-		\item ($E$-шаг, от слова \textsf{Expectation}) Считаем матожидание
+		\item ($E$-шаг, от слова \textsf{Expectation}) Считаем мат. ожидание
 		\[
 		J(\theta) = \me[\mathbf z \sim \rho_{\boldtheta_t}(\mathbf z | \mathbf x)] \ln \rho_{\boldtheta}(\mathbf x, \mathbf z),
 		\]
@@ -427,7 +427,7 @@ J(\theta) = \me[\mathbf z \sim \rho_{\boldtheta_t}(\mathbf z | \mathbf x)] \left
 \begin{example}
 	Вернёмся к задаче разделения смесей из примера \ref{gauss_mixture}. Полная функция правдоподобия уже была найдена ранее, с помощью неё легко найти условное распределение на $\mathbf z$:
 	\[
-	\pth[\boldmu_t, \boldsigma_t, \pi_t](Z_i = j | X_i = x_i) \sim \pth[\boldmu_t, \boldsigma_t, \pi_t](Z_i = j, X_i = x_i) = \pi_{t,j} \cdot \phi_{\mu_{t,j}, \sigma_{t,j}^2}(x_i), \;\;\; j \in \{0, 1\}.
+	\pth[\boldmu_t, \boldsigma_t, \pi_t](Z_i = j | X_i = x_i) \propto \pth[\boldmu_t, \boldsigma_t, \pi_t](Z_i = j, X_i = x_i) = \pi_{t,j} \cdot \phi_{\mu_{t,j}, \sigma_{t,j}^2}(x_i), \;\;\; j \in \{0, 1\}.
 	\]
 	Так как эти вероятности в сумме должны дать 1, то
 	\[
@@ -471,19 +471,19 @@ J(\theta) = \me[\mathbf z \sim \rho_{\boldtheta_t}(\mathbf z | \mathbf x)] \left
 	\rho_{\boldtheta, \sigma}(\mathbf y, \mathbf z) = \prod_{i=1}^n \rho(z_i) \underbrace{\rho_{\boldtheta, \sigma}(y_i | z_i)}_{\sim \mathcal{N}(\mathbf{x}_i^T \boldtheta, \sigma^2/z_i)} =  \prod_{i=1}^n \frac{(k/2)^{k/2} z_i^{k/2-1} e^{-kz_i/2}}{\Gamma(k/2)} \cdot \frac{e^{-\frac{(y_i-\mathbf{x}_i^T \boldtheta)^2}{2\sigma^2/z_i}}}{\sqrt{2\pi \sigma^2 / z_i}}.
 	\]
 	
-	Согласно E-шагу, нам нужно найти матожидание его логарифма по $\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf y)$ при фиксированных видимых переменных $\mathbf Y$. По формуле Байеса,
+	Согласно E-шагу, нам нужно найти мат. ожидание его логарифма по $\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf y)$ при фиксированных видимых переменных $\mathbf Y$. По формуле Байеса,
 	\[
 	\rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf y) \propto \rho_{\boldtheta_t, \sigma_t}(\mathbf y,  \mathbf z) \propto \prod_{i=1}^n \underbrace{z_i^{k/2-1/2} \exp\left[-z_i \cdot \left(\frac{(y_i-\mathbf{x}_i^T \boldtheta_t)^2}{2\sigma_t^2} + \frac{k}{2}\right)\right]}_{\sim \Gamma((k+1)/2, (y_i-\mathbf{x}_i^T \boldtheta_t)^2 /(2\sigma_t^2)+k/2)}.
 	\]
-	Находим искомое матожидание, одновременно скидывая в константу $C$ всё, что не зависит от значений $(\boldtheta, \sigma)$:
+	Находим искомое мат. ожидание, одновременно скидывая в константу $C$ всё, что не зависит от значений $(\boldtheta, \sigma)$:
 	\[
-	\me[\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf x)] \ln \rho_{\boldtheta, \sigma}(\mathbf x, \mathbf z) = \underbrace{\sum_{i=1}^n \me[\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf x)]\ln \rho(z_i)}_{=\textrm{const}} + \sum_{i=1}^n \me[\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf x)] \ln \rho_{\boldtheta, \sigma}(y_i | z_i) = 
+	\me[\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf y)] \ln \rho_{\boldtheta, \sigma}(\mathbf y, \mathbf z) = \underbrace{\sum_{i=1}^n \me[\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf y)]\ln \rho(z_i)}_{=\textrm{const}} + \sum_{i=1}^n \me[\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf y)] \ln \rho_{\boldtheta, \sigma}(y_i | z_i) = 
 	\]
 	\[
-	= C + \sum_{i=1}^n \me[\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf x)] \left(\ln{\sqrt{z_i}} - \ln{\sqrt{2\pi \sigma^2}} - z_i \cdot \frac{(y_i-\mathbf{x}_i^T \boldtheta)^2}{2\sigma^2} \right) =
+	= C + \sum_{i=1}^n \me[\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf y)] \left(\ln{\sqrt{z_i}} - \ln{\sqrt{2\pi \sigma^2}} - z_i \cdot \frac{(y_i-\mathbf{x}_i^T \boldtheta)^2}{2\sigma^2} \right) =
 	\]
 	\[
-	= C' - n\ln{\sqrt{2\pi \sigma^2}} - \sum_{i=1}^n \frac{(y_i-\mathbf{x}_i^T \boldtheta)^2}{2\sigma^2} \cdot \me[\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf x)] z_i =
+	= C' - n\ln{\sqrt{2\pi \sigma^2}} - \sum_{i=1}^n \frac{(y_i-\mathbf{x}_i^T \boldtheta)^2}{2\sigma^2} \cdot \me[\mathbf z \sim \rho_{\boldtheta_t, \sigma_t}(\mathbf z | \mathbf y)] z_i =
 	\]
 	\[
 	= C' - n\ln{\sqrt{2\pi \sigma^2}} - \sum_{i=1}^n \frac{(y_i-\mathbf{x}_i^T \boldtheta)^2}{2\sigma^2} \cdot \frac{k+1}{(y_i-\mathbf{x}_i^T \boldtheta_t)^2 / \sigma_t^2+k}.

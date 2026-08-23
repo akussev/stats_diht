@@ -267,7 +267,7 @@ Rejected    0   138
     \begin{minted}{python}
 def benjamini_hochberg(pvalues, alpha=0.05):
     m = len(pvalues)
-    threshold = m
+    threshold = -1
     sorted_pvalues = np.sort(pvalues)
     for i in range(m - 1, -1, -1):
         if sorted_pvalues[i] <= alpha * (i + 1) / m:

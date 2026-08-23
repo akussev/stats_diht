@@ -17,7 +17,7 @@
 \end{definition}
 
 \begin{example}
-    Пусть $\mathbf X = (X_1, \ldots, X_n)$ --- выборка из равномерного распределения на отрезке $U[0, \theta]$. Сравним следующие оценки параметра $\theta$ в среднеквадратичном подходе: $\widehat{\theta} = 2\overline{\mathbf X}$, $\theta^* = (n + 1)X_{(1)}$, $\widetilde{\theta} = \frac{n+1}{n}X_{(n)}$. Данные оценки являются несмещёнными (их матожидания были посчитаны ранее в примере \ref{example_of_properties}), а значит, их функция риска есть дисперсия.
+    Пусть $\mathbf X = (X_1, \ldots, X_n)$ --- выборка из равномерного распределения на отрезке $U[0, \theta]$. Сравним следующие оценки параметра $\theta$ в среднеквадратичном подходе: $\widehat{\theta} = 2\overline{\mathbf X}$, $\theta^* = (n + 1)X_{(1)}$, $\widetilde{\theta} = \frac{n+1}{n}X_{(n)}$. Данные оценки являются несмещёнными (их мат. ожидания были посчитаны ранее в примере \ref{example_of_properties}), а значит, их функция риска есть дисперсия.
     
     Для первой оценки получаем
     \[
@@ -62,8 +62,8 @@
         \[
         \sqrt{n}(\overline{\mathbf X} - \theta) \sim \mathcal{N}(0, 1).
         \]
-        Вторая же есть выборочная медиана $\widehat{\mu}(\mathbf X)$, которая по теореме о выборочном квантиле является асимптотически нормальной с асимптотической дисперсией $1/4\rho_{\theta}(\theta)^2 = \pi/2$. Таким образом, $\overline{\mathbf X}$ лучше $\widehat{\mu}$ в асимптотическом подходе.
-        \item Иная ситуация обстоит с $X_1, \ldots, X_n \sim \laplaced(\theta, 1)$. Хвосты этого распределения заметно тяжелее, чем у нормального закона, поэтому обычное среднее здесь менее эффективно. По ЦПТ асимптотическая дисперсия $\overline{\mathbf X}$ равна $\va X_1 = 2$, при этом в то же время по теореме о выборочном квантиле та же величина для $\widehat{\mu}$ равна $1/4\rho_{\theta}(\theta)^2 = 1$.
+        Вторая же есть выборочная медиана $\widehat{\mu}(\mathbf X)$, которая по теореме о выборочном квантиле является асимптотически нормальной с асимптотической дисперсией $\frac1{4\rho_{\theta}(\theta)^2} = \pi/2$. Таким образом, $\overline{\mathbf X}$ лучше $\widehat{\mu}$ в асимптотическом подходе.
+        \item Иная ситуация обстоит с $X_1, \ldots, X_n \sim \laplaced(\theta, 1)$. Хвосты этого распределения заметно тяжелее, чем у нормального закона, поэтому обычное среднее здесь менее эффективно. По ЦПТ асимптотическая дисперсия $\overline{\mathbf X}$ равна $\va X_1 = 2$, при этом в то же время по теореме о выборочном квантиле та же величина для $\widehat{\mu}$ равна $\frac1{4\rho_{\theta}(\theta)^2} = 1$.
         \item А вот оценки, полученные в примере \ref{quantile_example}, сравнить в данном подходе не получится: для некоторых значений параметра одна оценка имеет меньшую асимптотическую дисперсию, а при других --- вторая.
     \end{itemize}
 \end{example}
@@ -102,7 +102,7 @@
 
 \begin{regularity*}{}
 \begin{enumerate}[label=C\arabic*]
-\item\label{same_supp} Распределения $\pth$ имеют плотность $\rho_{\theta}(\mathbf{x})$ по некоторой мере $\mu$, носитель которой (т.е. множество $\{x \colon \rho_{\theta}(\mathbf{x}) > 0\}$) не зависит от $\theta$;\\
+\item\label{same_supp} Распределения $\pth$ имеют плотность $\rho_{\theta}(\mathbf{x})$ по некоторой мере $\mu$. Их носитель (т.е. множество $\{x \colon \rho_{\theta}(\mathbf{x}) > 0\}$) не зависит от $\theta$;\\
 \item\label{Theta_is_good} $\Theta$ --- открытое связное множество в $\R$;\\
 \item\label{diff_by_theta} Для любого $\theta \in \Theta$ и для любой статистики $S(\mathbf X)$ с локально ограниченным вторым моментом (то есть $\forall \theta_0 \, \exists \epsilon > 0, c > 0 \, \forall \theta \in B_{\epsilon}(\theta_0)\colon \me[\theta]S(\mathbf X)^2 < c$) выполнено
 \[
@@ -227,7 +227,14 @@
 \begin{example}
     Экспоненциальному классу распределений принадлежат многие семейства, которые мы рассматривали ранее. Приведём лишь некоторые из них.
     \begin{itemize}
-        \item $X_i \sim \mathcal N(a, \sigma^2)$. $$\rho_{(a, \sigma^2)}(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x - a)^2}{2\sigma^2}\right) = \exp\left(\smash{\underbrace{\left(\frac{1}{2}\ln{\frac{1}{2\pi\sigma^2}} - \frac{a^2}{2\sigma^2}\right)}_{= a_0(a, \sigma^2)}} - \frac{1}{2\sigma^2} \cdot x^2 + \frac{a}{\sigma^2} \cdot x\right).$$
+        \item $X_i \sim \mathcal N(a, \sigma^2)$.
+        \[
+            \rho_{(a, \sigma^2)}(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x - a)^2}{2\sigma^2}\right) =
+        \]
+        \[
+            = \exp\left(\smash{\underbrace{\left(\frac{1}{2}\ln{\frac{1}{2\pi\sigma^2}} - \frac{a^2}{2\sigma^2}\right)}_{= a_0(a, \sigma^2)}} - \frac{1}{2\sigma^2} \cdot x^2 + \frac{a}{\sigma^2} \cdot x\right)
+            \vphantom{\underbrace{\left(\frac{1}{2}\ln{\frac{1}{2\pi\sigma^2}} - \frac{a^2}{2\sigma^2}\right)}_{= a_0(a, \sigma^2)}}.
+        \]
         
         Таким образом, $T_1(x)=x$, $T_2(x)=x^2$.
         \item $X_i \sim \expd(\lambda)$.
@@ -238,7 +245,7 @@
         
         \item $X_i \sim \Gamma(\alpha, \lambda)$.
         \[
-        \rho_{(\alpha, \lambda)}(x) = \frac{\lambda^{\alpha}x^{\alpha-1}}{\Gamma(\alpha)}e^{-\lambda x}I(x > 0) = I(x > 0) \cdot \exp\bigl((\alpha\ln\lambda - \ln{\Gamma(\alpha)) - \lambda x + (\alpha - 1)\ln{x}}\bigr).
+        \rho_{(\alpha, \lambda)}(x) = \frac{\lambda^{\alpha}x^{\alpha-1}}{\Gamma(\alpha)}e^{-\lambda x}I(x > 0) = I(x > 0) \cdot \exp\bigl((\alpha\ln\lambda - \ln{\Gamma(\alpha)}) - \lambda x + (\alpha - 1)\ln{x}\bigr).
         \]
         В данном случае $T_1(x)=x$, $T_2(x)=\ln{x}$.
         \item $X_i \sim \betad(\alpha, \beta)$.
@@ -251,8 +258,8 @@
         \[
         \rho_{p}(x) = \left\{
         \begin{aligned}
-            &p, &x = 0\\
-            &1-p, &x = 1
+            &1 - p, &x = 0\\
+            &p, &x = 1
         \end{aligned}
         \right.
         \]
@@ -319,9 +326,9 @@
 \begin{theorem}{неравенство Рао-Крамера в многомерном случае}{}
     Для любой несмещённой оценки $\theta^*$ для $\tau(\theta)$ c локально ограниченным $\me {\theta^*_i}^2$ и для любого $\theta \in \Theta$ справедливо неравенство
     \[
-     \va\theta^*(\mathbf X) \ge \frac{\partial \tau}{\partial \theta} I^{-1}_{\mathbf X}(\theta) \left(\frac{\partial \tau}{\partial \theta}\right)^T.
+     \va\theta^*(\mathbf X) \succcurlyeq \frac{\partial \tau}{\partial \theta} I^{-1}_{\mathbf X}(\theta) \left(\frac{\partial \tau}{\partial \theta}\right)^T.
     \]
-    Неравенство $A \ge B$ двух симметричных матриц $A$ и $B$ понимают как неотрицательную определённость матрицы $A - B$.
+    Неравенство $A \succcurlyeq B$ двух симметричных матриц $A$ и $B$ понимают как неотрицательную определённость матрицы $A - B$.
 \end{theorem}
 
 \begin{theorem}{критерий эффективности в многомерном случае}{}
@@ -370,11 +377,11 @@
     Вспоминаем, что элементы выборки независимы, а в сумме выше выживают лишь ковариации по одинаковым индексам:
     \[
     \eqcirc
-    \frac{1}{2\sigma^6}\sum \mathsf{cov}\left(X_i, X_i^2\right) - \sum\frac{a}{\sigma^6}\mathsf{cov}\left(X_i, X_i\right) = \frac{n}{2\sigma^2}(\me X_1^3 - \me X_1 \cdot \me X_1^2 - 2a\va X_1) \eqcirc
+    \frac{1}{2\sigma^6}\sum \mathsf{cov}\left(X_i, X_i^2\right) - \sum\frac{a}{\sigma^6}\mathsf{cov}\left(X_i, X_i\right) = \frac{n}{2\sigma^6}(\me X_1^3 - \me X_1 \cdot \me X_1^2 - 2a\va X_1) \eqcirc
     \]
     Несложно посчитать, что $\me X_1^3 = a^3 + 3a\sigma^2$. Поэтому
     \[
-    \eqcirc \frac{n}{2\sigma^2}(a^3+3a\sigma^2 - a(\sigma^2 + a^2) - 2a\sigma^2) = 0.
+    \eqcirc \frac{n}{2\sigma^6}(a^3+3a\sigma^2 - a(\sigma^2 + a^2) - 2a\sigma^2) = 0.
     \]
     Находим матрицу Якоби для $\tau(a, \sigma^2) = (a, a^2 + \sigma^2)$, обращаем информационную матрицу $I_{\mathbf X}(\theta)$ (благо это нетрудно) и считаем ответ, воспользовавшись критерием эффективности:
     \begin{gather*}
@@ -464,7 +471,7 @@ $$\me \left(\left.\frac{\partial}{\partial \theta}\ln{\rho_{\theta}(\mathbf X)}\
 \begin{gather*}
     I_S(\theta) = \me \left(\frac{\partial}{\partial \theta }\ln{g_{\theta}(S(\mathbf X))} \cdot \me \left(\left.\frac{\partial}{\partial \theta}\ln{\rho_{\theta}(\mathbf X)}\right|S(\mathbf X)\right)\right) \eqcirc
     \end{gather*}
-По свойству УМО можно занести $S(\mathbf X)$-измеримую $\frac{\partial}{\partial \theta }\ln{g_{\theta}(S(\mathbf X))}$ под знак УМО, а потом воспользоваться формулой полного матожидания:
+По свойству УМО можно занести $S(\mathbf X)$-измеримую $\frac{\partial}{\partial \theta }\ln{g_{\theta}(S(\mathbf X))}$ под знак УМО, а потом воспользоваться формулой полного мат. ожидания:
 \begin{gather*}
     \eqcirc \me \left[\me \left(\left.\frac{\partial}{\partial \theta }\ln{g_{\theta}(S(\mathbf X))} \cdot \frac{\partial}{\partial \theta}\ln{\rho_{\theta}(\mathbf X)} \right|S(\mathbf X)\right)\right] = \me \left(\frac{\partial}{\partial \theta }\ln{g_{\theta}(S(\mathbf X))} \cdot \frac{\partial}{\partial \theta}\ln{\rho_{\theta}(\mathbf X)} \right) \lecirc
 \end{gather*}
@@ -558,8 +565,6 @@ KL(\rho_{\boldtheta} || \rho_{\boldtheta + \Delta}) = \frac{1}{2} \Delta^T I_{\m
 \begin{problem}\label{kl_normal}
 	Посчитайте $KL$-дивергенцию между двумя нормальными распределениями $\mathcal{N}(\mu_1, \sigma_1^2)$ и $\mathcal{N}(\mu_2, \sigma_2^2)$.
 \end{problem}
-
-
 
 
 
